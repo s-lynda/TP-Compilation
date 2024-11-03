@@ -1,0 +1,9 @@
+x=5; 
+
+Exemple 2 TP compilation 
+
+D=2.555
+
+L=9.0
+
+x=5.5;
