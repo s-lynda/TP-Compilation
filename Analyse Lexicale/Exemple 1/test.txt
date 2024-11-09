@@ -1,9 +1,18 @@
 *
 $
 
+#
 
 
 
 x=5; 
 
 L3 ACAD B
+L3 ISIL B
+
+\ L3 ISIL 1
+"L3 ISIL A G1"
+\\ Test antislash
+\
+ABCDEFGHIJ1234
+abcdefghijXYZ789

@@ -13,11 +13,13 @@ cst {chiffre}+
 {cst} printf("cst ");
 "="   printf ("aff ");
 ";" printf("pvg \n");
+\\ printf("\n antislach reconnu\n");
+\\\\ printf("\n double antislach reconnu\n");
+"\"" printf("\n guillemet reconnu\n");
 [ \t] 
 \n {nb_ligne++; }
 . printf("erreur lexicale a la ligne %d \n",nb_ligne) ;
 %%
-
 int main () 
 {
     yylex () ;

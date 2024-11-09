@@ -73,9 +73,8 @@
 #include <stdio.h>
 
 
-
 /* Line 189 of yacc.c  */
-#line 79 "syntax.tab.c"
+#line 78 "syntax.tab.c"
 
 /* Enabling traces.  */
 #ifndef YYDEBUG
@@ -123,7 +122,7 @@ typedef int YYSTYPE;
 
 
 /* Line 264 of yacc.c  */
-#line 127 "syntax.tab.c"
+#line 126 "syntax.tab.c"
 
 #ifdef short
 # undef short
@@ -405,7 +404,7 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,     8,     8
+       0,     7,     7
 };
 #endif
 
@@ -1301,7 +1300,7 @@ yyreduce:
         case 2:
 
 /* Line 1455 of yacc.c  */
-#line 8 "syntax.y"
+#line 7 "syntax.y"
     {
         printf("syntaxe correcte");
         YYACCEPT;
@@ -1311,7 +1310,7 @@ yyreduce:
 
 
 /* Line 1455 of yacc.c  */
-#line 1315 "syntax.tab.c"
+#line 1314 "syntax.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1523,7 +1522,7 @@ yyreturn:
 
 
 /* Line 1675 of yacc.c  */
-#line 13 "syntax.y"
+#line 12 "syntax.y"
 
 main ()
 {

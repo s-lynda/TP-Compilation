@@ -1,6 +1,5 @@
 %{
 #include <stdio.h>
-
 %}
 %start S
 %token cst pvg aff idf
