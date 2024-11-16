@@ -1,8 +1,15 @@
+/* Okey 
+ hello 
+*/
+
+
 *
 $
 
 #
 
+
+x=5;;
 
 
 x=5; 
@@ -16,3 +23,8 @@ L3 ISIL B
 \
 ABCDEFGHIJ1234
 abcdefghijXYZ789
+
+// Hey How are y
+
+// Hello what the Hell 
+
