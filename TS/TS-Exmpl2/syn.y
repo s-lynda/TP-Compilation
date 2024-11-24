@@ -52,11 +52,11 @@ INST_AFF: idf aff EXPRESSION fin
 
 EXPRESSION: idf 
           | cst
-	  | idf  divis cst {
-		                          if ($3==0) printf(" Erreur  semantique a ligne %d a la colonne %d: div par 0 \n", nb_ligne,Col);                                   
-								  else  printf("la div de %s par %d \n ", $1,$3);         
-		  
-		                     }
+	  | idf  divis cst 
+                {
+                 if ($3==0) printf(" Erreur  semantique a ligne %d a la colonne %d: div par 0 \n", nb_ligne,Col);                                   
+                 else  printf("la div de %s par %d \n ", $1,$3);         
+		 }
 		      
 ;
 
