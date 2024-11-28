@@ -65,11 +65,11 @@ instdiv: idf '=' idf '/' idf ';' {
                     if(rechercheType($3)==0) printf("Erreur semantique: %s non declare a la ligne %d\n",$3,nb_ligne);
                     }
        | idf '=' idf '/' cst ';' {
-                           /** Vérification de la division par zero */
-                          if ($5==0) printf("Erreur semantique: Division par zero a la ligne %d\n",nb_ligne);
                           /* Vérification de la declaration */
                           if(rechercheType($1)==0) printf("Erreur semantique: %s non declare a la ligne %d\n",$1,nb_ligne);
                           if(rechercheType($3)==0) printf("Erreur semantique: %s non declare a la ligne %d\n",$3,nb_ligne);
+                          /** Vérification de la division par zero */
+                          if ($5==0) printf("Erreur semantique: Division par zero a la ligne %d\n",nb_ligne);
                           } 	
        
        ;
