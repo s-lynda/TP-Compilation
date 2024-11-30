@@ -42,22 +42,7 @@ void inserer(char entite[], char code[])
   }
 }
 
-//Fonction d'affichage de la TS
-void afficher()
-{
-  printf("\n/***************Table des symboles ******************/\n");
-  printf("__________________________________________________\n");
-  printf("\t| NomEntite |  CodeEntite  | TypeEntite \n");
-  printf("__________________________________________________\n");
-  int i = 0;
-  while (i < CpTS)
-  {
-    printf("\t|%10s |%12s  |%12s |\n", ts[i].NomEntite, ts[i].CodeEntite,ts[i].TypeEntite);
-    i++;
-  }
-}
-
-// fonction qui insère le type d'une etité une fois il va être reconu dans la syntaxe 
+// fonction qui insère le type d'une etité une fois il va être reconnu dans la syntaxe 
 void insererType(char entite[], char type[])
 {
     int posEntite=recherche(entite);
@@ -74,4 +59,20 @@ int rechercheType(char entite[])
     int posEntite=recherche(entite);
     if(strcmp(ts[posEntite].TypeEntite,"")==0) return 0; // l'entité n'est pas encore déclarée
     else return -1; // elle est déclarée
+}
+
+
+//Fonction d'affichage de la TS
+void afficher()
+{
+  printf("\n/***************Table des symboles ******************/\n");
+  printf("__________________________________________________\n");
+  printf("\t| NomEntite |  CodeEntite  | TypeEntite \n");
+  printf("__________________________________________________\n");
+  int i = 0;
+  while (i < CpTS)
+  {
+    printf("\t|%10s |%12s  |%12s |\n", ts[i].NomEntite, ts[i].CodeEntite,ts[i].TypeEntite);
+    i++;
+  }
 }
