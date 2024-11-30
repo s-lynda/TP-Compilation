@@ -31,15 +31,15 @@ listeparams: listeparams ',' idf { /* Vérification de la double declaration */
                                  }
    | idf  {      /* Vérification de la double declaration */
                   if (rechercheType($1)==0) insererType($1,SauvType);
-                                 else printf("Erreur Semantique: double declation de %s, a la ligne %d\n", $1, nb_ligne);
-                                 }
+                  else printf("Erreur Semantique: double declation de %s, a la ligne %d\n", $1, nb_ligne);
+          }
    ;
 
 type: mc_integer {strcpy(SauvType,$1);}
       | mc_real {strcpy(SauvType,$1);}
 ;
 
-INSTRUCTION: mc_inbegin  ListeInstr mc_inend 
+INSTRUCTION: mc_inbegin ListeInstr mc_inend 
 ;
 ListeInstr: ListeInstr Instruction
           | Instruction
@@ -60,18 +60,18 @@ instaff: idf '=' idf ';' {     /* Vérification de la declaration */
 ;
 
 instdiv: idf '=' idf '/' idf ';' {
-                                          /* Vérification de la declaration */
+                        /* Vérification de la declaration */
                     if(rechercheType($1)==0) printf("Erreur semantique: %s non declare a la ligne %d\n",$1,nb_ligne);
                     if(rechercheType($3)==0) printf("Erreur semantique: %s non declare a la ligne %d\n",$3,nb_ligne);
+                    if(rechercheType($5)==0) printf("Erreur semantique: %s non declare a la ligne %d\n",$5,nb_ligne);
                     }
        | idf '=' idf '/' cst ';' {
                           /* Vérification de la declaration */
                           if(rechercheType($1)==0) printf("Erreur semantique: %s non declare a la ligne %d\n",$1,nb_ligne);
                           if(rechercheType($3)==0) printf("Erreur semantique: %s non declare a la ligne %d\n",$3,nb_ligne);
                           /** Vérification de la division par zero */
-                          if ($5==0) printf("Erreur semantique: Division par zero a la ligne %d\n",nb_ligne);
-                          } 	
-       
+                          if ($5==0) printf("Erreur semantique: Division par %d a la ligne %d\n",$3,nb_ligne);
+                                 } 	 
        ;
 instadd: idf '=' idf '+' idf ';' {
                     if(rechercheType($1)==0) printf("Erreur semantique: %s non declare a la ligne %d\n",$1,nb_ligne);
