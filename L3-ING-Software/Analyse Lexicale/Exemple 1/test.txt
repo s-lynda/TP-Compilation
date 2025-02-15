@@ -1,0 +1,7 @@
+printf("Entrez votre nom :");
+
+*
+
+"
+
+$
