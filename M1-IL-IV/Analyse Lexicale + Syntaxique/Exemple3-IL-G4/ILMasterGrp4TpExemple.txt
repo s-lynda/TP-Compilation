@@ -1,0 +1,15 @@
+Declare {
+  arrayOfNum j 
+  num k 
+  bool keepScanning 
+}
+main(){
+ while(keepScanning){
+  	print('do you want to add a number ?')
+ 	scan(k)
+	j.add(k)
+ }
+ j.removeWhere(k => k % 2 != 0)
+ print('The final list of even numbers :' + j)
+}
+

@@ -1,0 +1,20 @@
+PROGRAM helloworld
+[
+
+#Declaration
+
+int x,y,z
+
+#instruction
+
+x=4
+y=2 
+z=x
+
+IF(x==z)Do(
+print{'hello'}
+)ELSE(
+print{'world'}
+)
+
+]

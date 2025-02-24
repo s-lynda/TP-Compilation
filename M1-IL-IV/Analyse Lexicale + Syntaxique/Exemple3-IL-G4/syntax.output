@@ -1,0 +1,668 @@
+Terminals unused in grammar
+
+   geq
+   leq
+
+
+Grammar
+
+    0 $accept: S $end
+
+    1 S: Declaration Main
+
+    2 Declaration: mc_declare acco Dec accf
+
+    3 Dec: DECD Dec
+    4    | DECD
+
+    5 DECD: Type list_idf
+
+    6 Type: mc_arrayOfNum
+    7     | mc_num
+    8     | mc_bool
+
+    9 list_idf: list_idf ',' idf
+   10         | idf
+
+   11 Main: mc_main '(' ')' acco Instruction accf
+
+   12 Instruction: instruction Instruction
+   13            | instruction
+
+   14 instruction: boucle
+   15            | print
+   16            | scan
+   17            | appel
+
+   18 boucle: mc_while '(' idf ')' acco Instruction accf
+
+   19 print: mc_print '(' chaine ')'
+   20      | mc_print '(' chaine '+' idf ')'
+
+   21 scan: mc_scan '(' idf ')'
+
+   22 appel: idf '.' mc_add '(' idf ')'
+   23      | idf '.' mc_removeWhere '(' idf implique cdt ')'
+
+   24 cdt: valeur '%' valeur neq valeur
+
+   25 valeur: idf
+   26       | entier
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+'%' (37) 24
+'(' (40) 11 18 19 20 21 22 23
+')' (41) 11 18 19 20 21 22 23
+'+' (43) 20
+',' (44) 9
+'.' (46) 22 23
+error (256)
+mc_declare (258) 2
+mc_arrayOfNum (259) 6
+mc_num (260) 7
+mc_bool (261) 8
+mc_main (262) 11
+mc_while (263) 18
+mc_print (264) 19 20
+mc_scan (265) 21
+mc_add (266) 22
+mc_removeWhere (267) 23
+idf (268) 9 10 18 20 21 22 23 25
+chaine (269) 19 20
+acco (270) 2 11 18
+accf (271) 2 11 18
+neq (272) 24
+geq (273)
+leq (274)
+implique (275) 23
+entier (276) 26
+
+
+Nonterminals, with rules where they appear
+
+$accept (28)
+    on left: 0
+S (29)
+    on left: 1, on right: 0
+Declaration (30)
+    on left: 2, on right: 1
+Dec (31)
+    on left: 3 4, on right: 2 3
+DECD (32)
+    on left: 5, on right: 3 4
+Type (33)
+    on left: 6 7 8, on right: 5
+list_idf (34)
+    on left: 9 10, on right: 5 9
+Main (35)
+    on left: 11, on right: 1
+Instruction (36)
+    on left: 12 13, on right: 11 12 18
+instruction (37)
+    on left: 14 15 16 17, on right: 12 13
+boucle (38)
+    on left: 18, on right: 14
+print (39)
+    on left: 19 20, on right: 15
+scan (40)
+    on left: 21, on right: 16
+appel (41)
+    on left: 22 23, on right: 17
+cdt (42)
+    on left: 24, on right: 23
+valeur (43)
+    on left: 25 26, on right: 24
+
+
+state 0
+
+    0 $accept: . S $end
+
+    mc_declare  shift, and go to state 1
+
+    S            go to state 2
+    Declaration  go to state 3
+
+
+state 1
+
+    2 Declaration: mc_declare . acco Dec accf
+
+    acco  shift, and go to state 4
+
+
+state 2
+
+    0 $accept: S . $end
+
+    $end  shift, and go to state 5
+
+
+state 3
+
+    1 S: Declaration . Main
+
+    mc_main  shift, and go to state 6
+
+    Main  go to state 7
+
+
+state 4
+
+    2 Declaration: mc_declare acco . Dec accf
+
+    mc_arrayOfNum  shift, and go to state 8
+    mc_num         shift, and go to state 9
+    mc_bool        shift, and go to state 10
+
+    Dec   go to state 11
+    DECD  go to state 12
+    Type  go to state 13
+
+
+state 5
+
+    0 $accept: S $end .
+
+    $default  accept
+
+
+state 6
+
+   11 Main: mc_main . '(' ')' acco Instruction accf
+
+    '('  shift, and go to state 14
+
+
+state 7
+
+    1 S: Declaration Main .
+
+    $default  reduce using rule 1 (S)
+
+
+state 8
+
+    6 Type: mc_arrayOfNum .
+
+    $default  reduce using rule 6 (Type)
+
+
+state 9
+
+    7 Type: mc_num .
+
+    $default  reduce using rule 7 (Type)
+
+
+state 10
+
+    8 Type: mc_bool .
+
+    $default  reduce using rule 8 (Type)
+
+
+state 11
+
+    2 Declaration: mc_declare acco Dec . accf
+
+    accf  shift, and go to state 15
+
+
+state 12
+
+    3 Dec: DECD . Dec
+    4    | DECD .
+
+    mc_arrayOfNum  shift, and go to state 8
+    mc_num         shift, and go to state 9
+    mc_bool        shift, and go to state 10
+
+    $default  reduce using rule 4 (Dec)
+
+    Dec   go to state 16
+    DECD  go to state 12
+    Type  go to state 13
+
+
+state 13
+
+    5 DECD: Type . list_idf
+
+    idf  shift, and go to state 17
+
+    list_idf  go to state 18
+
+
+state 14
+
+   11 Main: mc_main '(' . ')' acco Instruction accf
+
+    ')'  shift, and go to state 19
+
+
+state 15
+
+    2 Declaration: mc_declare acco Dec accf .
+
+    $default  reduce using rule 2 (Declaration)
+
+
+state 16
+
+    3 Dec: DECD Dec .
+
+    $default  reduce using rule 3 (Dec)
+
+
+state 17
+
+   10 list_idf: idf .
+
+    $default  reduce using rule 10 (list_idf)
+
+
+state 18
+
+    5 DECD: Type list_idf .
+    9 list_idf: list_idf . ',' idf
+
+    ','  shift, and go to state 20
+
+    $default  reduce using rule 5 (DECD)
+
+
+state 19
+
+   11 Main: mc_main '(' ')' . acco Instruction accf
+
+    acco  shift, and go to state 21
+
+
+state 20
+
+    9 list_idf: list_idf ',' . idf
+
+    idf  shift, and go to state 22
+
+
+state 21
+
+   11 Main: mc_main '(' ')' acco . Instruction accf
+
+    mc_while  shift, and go to state 23
+    mc_print  shift, and go to state 24
+    mc_scan   shift, and go to state 25
+    idf       shift, and go to state 26
+
+    Instruction  go to state 27
+    instruction  go to state 28
+    boucle       go to state 29
+    print        go to state 30
+    scan         go to state 31
+    appel        go to state 32
+
+
+state 22
+
+    9 list_idf: list_idf ',' idf .
+
+    $default  reduce using rule 9 (list_idf)
+
+
+state 23
+
+   18 boucle: mc_while . '(' idf ')' acco Instruction accf
+
+    '('  shift, and go to state 33
+
+
+state 24
+
+   19 print: mc_print . '(' chaine ')'
+   20      | mc_print . '(' chaine '+' idf ')'
+
+    '('  shift, and go to state 34
+
+
+state 25
+
+   21 scan: mc_scan . '(' idf ')'
+
+    '('  shift, and go to state 35
+
+
+state 26
+
+   22 appel: idf . '.' mc_add '(' idf ')'
+   23      | idf . '.' mc_removeWhere '(' idf implique cdt ')'
+
+    '.'  shift, and go to state 36
+
+
+state 27
+
+   11 Main: mc_main '(' ')' acco Instruction . accf
+
+    accf  shift, and go to state 37
+
+
+state 28
+
+   12 Instruction: instruction . Instruction
+   13            | instruction .
+
+    mc_while  shift, and go to state 23
+    mc_print  shift, and go to state 24
+    mc_scan   shift, and go to state 25
+    idf       shift, and go to state 26
+
+    $default  reduce using rule 13 (Instruction)
+
+    Instruction  go to state 38
+    instruction  go to state 28
+    boucle       go to state 29
+    print        go to state 30
+    scan         go to state 31
+    appel        go to state 32
+
+
+state 29
+
+   14 instruction: boucle .
+
+    $default  reduce using rule 14 (instruction)
+
+
+state 30
+
+   15 instruction: print .
+
+    $default  reduce using rule 15 (instruction)
+
+
+state 31
+
+   16 instruction: scan .
+
+    $default  reduce using rule 16 (instruction)
+
+
+state 32
+
+   17 instruction: appel .
+
+    $default  reduce using rule 17 (instruction)
+
+
+state 33
+
+   18 boucle: mc_while '(' . idf ')' acco Instruction accf
+
+    idf  shift, and go to state 39
+
+
+state 34
+
+   19 print: mc_print '(' . chaine ')'
+   20      | mc_print '(' . chaine '+' idf ')'
+
+    chaine  shift, and go to state 40
+
+
+state 35
+
+   21 scan: mc_scan '(' . idf ')'
+
+    idf  shift, and go to state 41
+
+
+state 36
+
+   22 appel: idf '.' . mc_add '(' idf ')'
+   23      | idf '.' . mc_removeWhere '(' idf implique cdt ')'
+
+    mc_add          shift, and go to state 42
+    mc_removeWhere  shift, and go to state 43
+
+
+state 37
+
+   11 Main: mc_main '(' ')' acco Instruction accf .
+
+    $default  reduce using rule 11 (Main)
+
+
+state 38
+
+   12 Instruction: instruction Instruction .
+
+    $default  reduce using rule 12 (Instruction)
+
+
+state 39
+
+   18 boucle: mc_while '(' idf . ')' acco Instruction accf
+
+    ')'  shift, and go to state 44
+
+
+state 40
+
+   19 print: mc_print '(' chaine . ')'
+   20      | mc_print '(' chaine . '+' idf ')'
+
+    ')'  shift, and go to state 45
+    '+'  shift, and go to state 46
+
+
+state 41
+
+   21 scan: mc_scan '(' idf . ')'
+
+    ')'  shift, and go to state 47
+
+
+state 42
+
+   22 appel: idf '.' mc_add . '(' idf ')'
+
+    '('  shift, and go to state 48
+
+
+state 43
+
+   23 appel: idf '.' mc_removeWhere . '(' idf implique cdt ')'
+
+    '('  shift, and go to state 49
+
+
+state 44
+
+   18 boucle: mc_while '(' idf ')' . acco Instruction accf
+
+    acco  shift, and go to state 50
+
+
+state 45
+
+   19 print: mc_print '(' chaine ')' .
+
+    $default  reduce using rule 19 (print)
+
+
+state 46
+
+   20 print: mc_print '(' chaine '+' . idf ')'
+
+    idf  shift, and go to state 51
+
+
+state 47
+
+   21 scan: mc_scan '(' idf ')' .
+
+    $default  reduce using rule 21 (scan)
+
+
+state 48
+
+   22 appel: idf '.' mc_add '(' . idf ')'
+
+    idf  shift, and go to state 52
+
+
+state 49
+
+   23 appel: idf '.' mc_removeWhere '(' . idf implique cdt ')'
+
+    idf  shift, and go to state 53
+
+
+state 50
+
+   18 boucle: mc_while '(' idf ')' acco . Instruction accf
+
+    mc_while  shift, and go to state 23
+    mc_print  shift, and go to state 24
+    mc_scan   shift, and go to state 25
+    idf       shift, and go to state 26
+
+    Instruction  go to state 54
+    instruction  go to state 28
+    boucle       go to state 29
+    print        go to state 30
+    scan         go to state 31
+    appel        go to state 32
+
+
+state 51
+
+   20 print: mc_print '(' chaine '+' idf . ')'
+
+    ')'  shift, and go to state 55
+
+
+state 52
+
+   22 appel: idf '.' mc_add '(' idf . ')'
+
+    ')'  shift, and go to state 56
+
+
+state 53
+
+   23 appel: idf '.' mc_removeWhere '(' idf . implique cdt ')'
+
+    implique  shift, and go to state 57
+
+
+state 54
+
+   18 boucle: mc_while '(' idf ')' acco Instruction . accf
+
+    accf  shift, and go to state 58
+
+
+state 55
+
+   20 print: mc_print '(' chaine '+' idf ')' .
+
+    $default  reduce using rule 20 (print)
+
+
+state 56
+
+   22 appel: idf '.' mc_add '(' idf ')' .
+
+    $default  reduce using rule 22 (appel)
+
+
+state 57
+
+   23 appel: idf '.' mc_removeWhere '(' idf implique . cdt ')'
+
+    idf     shift, and go to state 59
+    entier  shift, and go to state 60
+
+    cdt     go to state 61
+    valeur  go to state 62
+
+
+state 58
+
+   18 boucle: mc_while '(' idf ')' acco Instruction accf .
+
+    $default  reduce using rule 18 (boucle)
+
+
+state 59
+
+   25 valeur: idf .
+
+    $default  reduce using rule 25 (valeur)
+
+
+state 60
+
+   26 valeur: entier .
+
+    $default  reduce using rule 26 (valeur)
+
+
+state 61
+
+   23 appel: idf '.' mc_removeWhere '(' idf implique cdt . ')'
+
+    ')'  shift, and go to state 63
+
+
+state 62
+
+   24 cdt: valeur . '%' valeur neq valeur
+
+    '%'  shift, and go to state 64
+
+
+state 63
+
+   23 appel: idf '.' mc_removeWhere '(' idf implique cdt ')' .
+
+    $default  reduce using rule 23 (appel)
+
+
+state 64
+
+   24 cdt: valeur '%' . valeur neq valeur
+
+    idf     shift, and go to state 59
+    entier  shift, and go to state 60
+
+    valeur  go to state 65
+
+
+state 65
+
+   24 cdt: valeur '%' valeur . neq valeur
+
+    neq  shift, and go to state 66
+
+
+state 66
+
+   24 cdt: valeur '%' valeur neq . valeur
+
+    idf     shift, and go to state 59
+    entier  shift, and go to state 60
+
+    valeur  go to state 67
+
+
+state 67
+
+   24 cdt: valeur '%' valeur neq valeur .
+
+    $default  reduce using rule 24 (cdt)

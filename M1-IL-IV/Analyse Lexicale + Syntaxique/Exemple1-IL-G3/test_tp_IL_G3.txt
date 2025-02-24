@@ -1,0 +1,8 @@
+int n;
+int main(){
+    printf("entrez le nombre \n");
+    scanf("%d",&n);
+    n=n*n;
+    printf("%d",n);
+
+}

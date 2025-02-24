@@ -1,0 +1,496 @@
+Grammar
+
+    0 $accept: S $end
+
+    1 S: entete corps
+
+    2 entete: mc_p idf
+
+    3 corps: cro Declaration Instruction crf
+
+    4 Declaration: dec Declaration
+    5            | /* empty */
+
+    6 dec: mc_int list_idf
+
+    7 list_idf: list_idf ',' idf
+    8         | idf
+
+    9 Instruction: instruction Instruction
+   10            | instruction
+
+   11 instruction: affectation
+   12            | condition
+   13            | write
+
+   14 affectation: idf '=' idf
+   15            | idf '=' entier
+   16            | idf '=' chaine
+
+   17 condition: mc_if '(' idf egal idf ')' mc_do '(' instruction ')'
+   18          | mc_if '(' idf egal idf ')' mc_do '(' instruction ')' mc_else '(' instruction ')'
+
+   19 write: mc_print '{' chaine '}'
+   20      | mc_print '{' idf '}'
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+'(' (40) 17 18
+')' (41) 17 18
+',' (44) 7
+'=' (61) 14 15 16
+'{' (123) 19 20
+'}' (125) 19 20
+error (256)
+mc_p (258) 2
+mc_int (259) 6
+mc_if (260) 17 18
+mc_else (261) 18
+mc_do (262) 17 18
+mc_print (263) 19 20
+crf (264) 3
+cro (265) 3
+egal (266) 17 18
+idf (267) 2 7 8 14 15 16 17 18 20
+chaine (268) 16 19
+entier (269) 15
+
+
+Nonterminals, with rules where they appear
+
+$accept (21)
+    on left: 0
+S (22)
+    on left: 1, on right: 0
+entete (23)
+    on left: 2, on right: 1
+corps (24)
+    on left: 3, on right: 1
+Declaration (25)
+    on left: 4 5, on right: 3 4
+dec (26)
+    on left: 6, on right: 4
+list_idf (27)
+    on left: 7 8, on right: 6 7
+Instruction (28)
+    on left: 9 10, on right: 3 9
+instruction (29)
+    on left: 11 12 13, on right: 9 10 17 18
+affectation (30)
+    on left: 14 15 16, on right: 11
+condition (31)
+    on left: 17 18, on right: 12
+write (32)
+    on left: 19 20, on right: 13
+
+
+state 0
+
+    0 $accept: . S $end
+
+    mc_p  shift, and go to state 1
+
+    S       go to state 2
+    entete  go to state 3
+
+
+state 1
+
+    2 entete: mc_p . idf
+
+    idf  shift, and go to state 4
+
+
+state 2
+
+    0 $accept: S . $end
+
+    $end  shift, and go to state 5
+
+
+state 3
+
+    1 S: entete . corps
+
+    cro  shift, and go to state 6
+
+    corps  go to state 7
+
+
+state 4
+
+    2 entete: mc_p idf .
+
+    $default  reduce using rule 2 (entete)
+
+
+state 5
+
+    0 $accept: S $end .
+
+    $default  accept
+
+
+state 6
+
+    3 corps: cro . Declaration Instruction crf
+
+    mc_int  shift, and go to state 8
+
+    $default  reduce using rule 5 (Declaration)
+
+    Declaration  go to state 9
+    dec          go to state 10
+
+
+state 7
+
+    1 S: entete corps .
+
+    $default  reduce using rule 1 (S)
+
+
+state 8
+
+    6 dec: mc_int . list_idf
+
+    idf  shift, and go to state 11
+
+    list_idf  go to state 12
+
+
+state 9
+
+    3 corps: cro Declaration . Instruction crf
+
+    mc_if     shift, and go to state 13
+    mc_print  shift, and go to state 14
+    idf       shift, and go to state 15
+
+    Instruction  go to state 16
+    instruction  go to state 17
+    affectation  go to state 18
+    condition    go to state 19
+    write        go to state 20
+
+
+state 10
+
+    4 Declaration: dec . Declaration
+
+    mc_int  shift, and go to state 8
+
+    $default  reduce using rule 5 (Declaration)
+
+    Declaration  go to state 21
+    dec          go to state 10
+
+
+state 11
+
+    8 list_idf: idf .
+
+    $default  reduce using rule 8 (list_idf)
+
+
+state 12
+
+    6 dec: mc_int list_idf .
+    7 list_idf: list_idf . ',' idf
+
+    ','  shift, and go to state 22
+
+    $default  reduce using rule 6 (dec)
+
+
+state 13
+
+   17 condition: mc_if . '(' idf egal idf ')' mc_do '(' instruction ')'
+   18          | mc_if . '(' idf egal idf ')' mc_do '(' instruction ')' mc_else '(' instruction ')'
+
+    '('  shift, and go to state 23
+
+
+state 14
+
+   19 write: mc_print . '{' chaine '}'
+   20      | mc_print . '{' idf '}'
+
+    '{'  shift, and go to state 24
+
+
+state 15
+
+   14 affectation: idf . '=' idf
+   15            | idf . '=' entier
+   16            | idf . '=' chaine
+
+    '='  shift, and go to state 25
+
+
+state 16
+
+    3 corps: cro Declaration Instruction . crf
+
+    crf  shift, and go to state 26
+
+
+state 17
+
+    9 Instruction: instruction . Instruction
+   10            | instruction .
+
+    mc_if     shift, and go to state 13
+    mc_print  shift, and go to state 14
+    idf       shift, and go to state 15
+
+    $default  reduce using rule 10 (Instruction)
+
+    Instruction  go to state 27
+    instruction  go to state 17
+    affectation  go to state 18
+    condition    go to state 19
+    write        go to state 20
+
+
+state 18
+
+   11 instruction: affectation .
+
+    $default  reduce using rule 11 (instruction)
+
+
+state 19
+
+   12 instruction: condition .
+
+    $default  reduce using rule 12 (instruction)
+
+
+state 20
+
+   13 instruction: write .
+
+    $default  reduce using rule 13 (instruction)
+
+
+state 21
+
+    4 Declaration: dec Declaration .
+
+    $default  reduce using rule 4 (Declaration)
+
+
+state 22
+
+    7 list_idf: list_idf ',' . idf
+
+    idf  shift, and go to state 28
+
+
+state 23
+
+   17 condition: mc_if '(' . idf egal idf ')' mc_do '(' instruction ')'
+   18          | mc_if '(' . idf egal idf ')' mc_do '(' instruction ')' mc_else '(' instruction ')'
+
+    idf  shift, and go to state 29
+
+
+state 24
+
+   19 write: mc_print '{' . chaine '}'
+   20      | mc_print '{' . idf '}'
+
+    idf     shift, and go to state 30
+    chaine  shift, and go to state 31
+
+
+state 25
+
+   14 affectation: idf '=' . idf
+   15            | idf '=' . entier
+   16            | idf '=' . chaine
+
+    idf     shift, and go to state 32
+    chaine  shift, and go to state 33
+    entier  shift, and go to state 34
+
+
+state 26
+
+    3 corps: cro Declaration Instruction crf .
+
+    $default  reduce using rule 3 (corps)
+
+
+state 27
+
+    9 Instruction: instruction Instruction .
+
+    $default  reduce using rule 9 (Instruction)
+
+
+state 28
+
+    7 list_idf: list_idf ',' idf .
+
+    $default  reduce using rule 7 (list_idf)
+
+
+state 29
+
+   17 condition: mc_if '(' idf . egal idf ')' mc_do '(' instruction ')'
+   18          | mc_if '(' idf . egal idf ')' mc_do '(' instruction ')' mc_else '(' instruction ')'
+
+    egal  shift, and go to state 35
+
+
+state 30
+
+   20 write: mc_print '{' idf . '}'
+
+    '}'  shift, and go to state 36
+
+
+state 31
+
+   19 write: mc_print '{' chaine . '}'
+
+    '}'  shift, and go to state 37
+
+
+state 32
+
+   14 affectation: idf '=' idf .
+
+    $default  reduce using rule 14 (affectation)
+
+
+state 33
+
+   16 affectation: idf '=' chaine .
+
+    $default  reduce using rule 16 (affectation)
+
+
+state 34
+
+   15 affectation: idf '=' entier .
+
+    $default  reduce using rule 15 (affectation)
+
+
+state 35
+
+   17 condition: mc_if '(' idf egal . idf ')' mc_do '(' instruction ')'
+   18          | mc_if '(' idf egal . idf ')' mc_do '(' instruction ')' mc_else '(' instruction ')'
+
+    idf  shift, and go to state 38
+
+
+state 36
+
+   20 write: mc_print '{' idf '}' .
+
+    $default  reduce using rule 20 (write)
+
+
+state 37
+
+   19 write: mc_print '{' chaine '}' .
+
+    $default  reduce using rule 19 (write)
+
+
+state 38
+
+   17 condition: mc_if '(' idf egal idf . ')' mc_do '(' instruction ')'
+   18          | mc_if '(' idf egal idf . ')' mc_do '(' instruction ')' mc_else '(' instruction ')'
+
+    ')'  shift, and go to state 39
+
+
+state 39
+
+   17 condition: mc_if '(' idf egal idf ')' . mc_do '(' instruction ')'
+   18          | mc_if '(' idf egal idf ')' . mc_do '(' instruction ')' mc_else '(' instruction ')'
+
+    mc_do  shift, and go to state 40
+
+
+state 40
+
+   17 condition: mc_if '(' idf egal idf ')' mc_do . '(' instruction ')'
+   18          | mc_if '(' idf egal idf ')' mc_do . '(' instruction ')' mc_else '(' instruction ')'
+
+    '('  shift, and go to state 41
+
+
+state 41
+
+   17 condition: mc_if '(' idf egal idf ')' mc_do '(' . instruction ')'
+   18          | mc_if '(' idf egal idf ')' mc_do '(' . instruction ')' mc_else '(' instruction ')'
+
+    mc_if     shift, and go to state 13
+    mc_print  shift, and go to state 14
+    idf       shift, and go to state 15
+
+    instruction  go to state 42
+    affectation  go to state 18
+    condition    go to state 19
+    write        go to state 20
+
+
+state 42
+
+   17 condition: mc_if '(' idf egal idf ')' mc_do '(' instruction . ')'
+   18          | mc_if '(' idf egal idf ')' mc_do '(' instruction . ')' mc_else '(' instruction ')'
+
+    ')'  shift, and go to state 43
+
+
+state 43
+
+   17 condition: mc_if '(' idf egal idf ')' mc_do '(' instruction ')' .
+   18          | mc_if '(' idf egal idf ')' mc_do '(' instruction ')' . mc_else '(' instruction ')'
+
+    mc_else  shift, and go to state 44
+
+    $default  reduce using rule 17 (condition)
+
+
+state 44
+
+   18 condition: mc_if '(' idf egal idf ')' mc_do '(' instruction ')' mc_else . '(' instruction ')'
+
+    '('  shift, and go to state 45
+
+
+state 45
+
+   18 condition: mc_if '(' idf egal idf ')' mc_do '(' instruction ')' mc_else '(' . instruction ')'
+
+    mc_if     shift, and go to state 13
+    mc_print  shift, and go to state 14
+    idf       shift, and go to state 15
+
+    instruction  go to state 46
+    affectation  go to state 18
+    condition    go to state 19
+    write        go to state 20
+
+
+state 46
+
+   18 condition: mc_if '(' idf egal idf ')' mc_do '(' instruction ')' mc_else '(' instruction . ')'
+
+    ')'  shift, and go to state 47
+
+
+state 47
+
+   18 condition: mc_if '(' idf egal idf ')' mc_do '(' instruction ')' mc_else '(' instruction ')' .
+
+    $default  reduce using rule 18 (condition)

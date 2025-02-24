@@ -1,0 +1,408 @@
+Grammar
+
+    0 $accept: programme $end
+
+    1 programme: declaration main
+
+    2 declaration: mc_int idf pvg
+
+    3 main: mc_int mc_main po pf acco instructions accf
+
+    4 instructions: instruction instructions
+    5             | /* empty */
+
+    6 instruction: write
+    7            | read
+    8            | affectation
+
+    9 write: mc_printf po chaine pf pvg
+   10      | mc_printf po chaine vrg idf pf pvg
+
+   11 read: mc_scanf po chaine vrg adr idf pf pvg
+
+   12 affectation: idf aff idf pvg
+   13            | idf aff idf mul idf pvg
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+error (256)
+mc_int (258) 2 3
+mc_printf (259) 9 10
+mc_scanf (260) 11
+mc_main (261) 3
+po (262) 3 9 10 11
+pf (263) 3 9 10 11
+acco (264) 3
+accf (265) 3
+vrg (266) 10 11
+pvg (267) 2 9 10 11 12 13
+aff (268) 12 13
+mul (269) 13
+idf (270) 2 10 11 12 13
+chaine (271) 9 10 11
+adr (272) 11
+
+
+Nonterminals, with rules where they appear
+
+$accept (18)
+    on left: 0
+programme (19)
+    on left: 1, on right: 0
+declaration (20)
+    on left: 2, on right: 1
+main (21)
+    on left: 3, on right: 1
+instructions (22)
+    on left: 4 5, on right: 3 4
+instruction (23)
+    on left: 6 7 8, on right: 4
+write (24)
+    on left: 9 10, on right: 6
+read (25)
+    on left: 11, on right: 7
+affectation (26)
+    on left: 12 13, on right: 8
+
+
+state 0
+
+    0 $accept: . programme $end
+
+    mc_int  shift, and go to state 1
+
+    programme    go to state 2
+    declaration  go to state 3
+
+
+state 1
+
+    2 declaration: mc_int . idf pvg
+
+    idf  shift, and go to state 4
+
+
+state 2
+
+    0 $accept: programme . $end
+
+    $end  shift, and go to state 5
+
+
+state 3
+
+    1 programme: declaration . main
+
+    mc_int  shift, and go to state 6
+
+    main  go to state 7
+
+
+state 4
+
+    2 declaration: mc_int idf . pvg
+
+    pvg  shift, and go to state 8
+
+
+state 5
+
+    0 $accept: programme $end .
+
+    $default  accept
+
+
+state 6
+
+    3 main: mc_int . mc_main po pf acco instructions accf
+
+    mc_main  shift, and go to state 9
+
+
+state 7
+
+    1 programme: declaration main .
+
+    $default  reduce using rule 1 (programme)
+
+
+state 8
+
+    2 declaration: mc_int idf pvg .
+
+    $default  reduce using rule 2 (declaration)
+
+
+state 9
+
+    3 main: mc_int mc_main . po pf acco instructions accf
+
+    po  shift, and go to state 10
+
+
+state 10
+
+    3 main: mc_int mc_main po . pf acco instructions accf
+
+    pf  shift, and go to state 11
+
+
+state 11
+
+    3 main: mc_int mc_main po pf . acco instructions accf
+
+    acco  shift, and go to state 12
+
+
+state 12
+
+    3 main: mc_int mc_main po pf acco . instructions accf
+
+    mc_printf  shift, and go to state 13
+    mc_scanf   shift, and go to state 14
+    idf        shift, and go to state 15
+
+    $default  reduce using rule 5 (instructions)
+
+    instructions  go to state 16
+    instruction   go to state 17
+    write         go to state 18
+    read          go to state 19
+    affectation   go to state 20
+
+
+state 13
+
+    9 write: mc_printf . po chaine pf pvg
+   10      | mc_printf . po chaine vrg idf pf pvg
+
+    po  shift, and go to state 21
+
+
+state 14
+
+   11 read: mc_scanf . po chaine vrg adr idf pf pvg
+
+    po  shift, and go to state 22
+
+
+state 15
+
+   12 affectation: idf . aff idf pvg
+   13            | idf . aff idf mul idf pvg
+
+    aff  shift, and go to state 23
+
+
+state 16
+
+    3 main: mc_int mc_main po pf acco instructions . accf
+
+    accf  shift, and go to state 24
+
+
+state 17
+
+    4 instructions: instruction . instructions
+
+    mc_printf  shift, and go to state 13
+    mc_scanf   shift, and go to state 14
+    idf        shift, and go to state 15
+
+    $default  reduce using rule 5 (instructions)
+
+    instructions  go to state 25
+    instruction   go to state 17
+    write         go to state 18
+    read          go to state 19
+    affectation   go to state 20
+
+
+state 18
+
+    6 instruction: write .
+
+    $default  reduce using rule 6 (instruction)
+
+
+state 19
+
+    7 instruction: read .
+
+    $default  reduce using rule 7 (instruction)
+
+
+state 20
+
+    8 instruction: affectation .
+
+    $default  reduce using rule 8 (instruction)
+
+
+state 21
+
+    9 write: mc_printf po . chaine pf pvg
+   10      | mc_printf po . chaine vrg idf pf pvg
+
+    chaine  shift, and go to state 26
+
+
+state 22
+
+   11 read: mc_scanf po . chaine vrg adr idf pf pvg
+
+    chaine  shift, and go to state 27
+
+
+state 23
+
+   12 affectation: idf aff . idf pvg
+   13            | idf aff . idf mul idf pvg
+
+    idf  shift, and go to state 28
+
+
+state 24
+
+    3 main: mc_int mc_main po pf acco instructions accf .
+
+    $default  reduce using rule 3 (main)
+
+
+state 25
+
+    4 instructions: instruction instructions .
+
+    $default  reduce using rule 4 (instructions)
+
+
+state 26
+
+    9 write: mc_printf po chaine . pf pvg
+   10      | mc_printf po chaine . vrg idf pf pvg
+
+    pf   shift, and go to state 29
+    vrg  shift, and go to state 30
+
+
+state 27
+
+   11 read: mc_scanf po chaine . vrg adr idf pf pvg
+
+    vrg  shift, and go to state 31
+
+
+state 28
+
+   12 affectation: idf aff idf . pvg
+   13            | idf aff idf . mul idf pvg
+
+    pvg  shift, and go to state 32
+    mul  shift, and go to state 33
+
+
+state 29
+
+    9 write: mc_printf po chaine pf . pvg
+
+    pvg  shift, and go to state 34
+
+
+state 30
+
+   10 write: mc_printf po chaine vrg . idf pf pvg
+
+    idf  shift, and go to state 35
+
+
+state 31
+
+   11 read: mc_scanf po chaine vrg . adr idf pf pvg
+
+    adr  shift, and go to state 36
+
+
+state 32
+
+   12 affectation: idf aff idf pvg .
+
+    $default  reduce using rule 12 (affectation)
+
+
+state 33
+
+   13 affectation: idf aff idf mul . idf pvg
+
+    idf  shift, and go to state 37
+
+
+state 34
+
+    9 write: mc_printf po chaine pf pvg .
+
+    $default  reduce using rule 9 (write)
+
+
+state 35
+
+   10 write: mc_printf po chaine vrg idf . pf pvg
+
+    pf  shift, and go to state 38
+
+
+state 36
+
+   11 read: mc_scanf po chaine vrg adr . idf pf pvg
+
+    idf  shift, and go to state 39
+
+
+state 37
+
+   13 affectation: idf aff idf mul idf . pvg
+
+    pvg  shift, and go to state 40
+
+
+state 38
+
+   10 write: mc_printf po chaine vrg idf pf . pvg
+
+    pvg  shift, and go to state 41
+
+
+state 39
+
+   11 read: mc_scanf po chaine vrg adr idf . pf pvg
+
+    pf  shift, and go to state 42
+
+
+state 40
+
+   13 affectation: idf aff idf mul idf pvg .
+
+    $default  reduce using rule 13 (affectation)
+
+
+state 41
+
+   10 write: mc_printf po chaine vrg idf pf pvg .
+
+    $default  reduce using rule 10 (write)
+
+
+state 42
+
+   11 read: mc_scanf po chaine vrg adr idf pf . pvg
+
+    pvg  shift, and go to state 43
+
+
+state 43
+
+   11 read: mc_scanf po chaine vrg adr idf pf pvg .
+
+    $default  reduce using rule 11 (read)
