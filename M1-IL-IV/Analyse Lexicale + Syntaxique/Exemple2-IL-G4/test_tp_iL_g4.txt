@@ -4,6 +4,7 @@ PROGRAM helloworld
 #Declaration
 
 int x,y,z
+int x
 
 #instruction
 

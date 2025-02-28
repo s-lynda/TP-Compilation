@@ -1,0 +1,437 @@
+Terminals unused in grammar
+
+   err
+
+
+Grammar
+
+    0 $accept: S $end
+
+    1 S: Header mc_pdec DECLARATION INSTRUCTION
+
+    2 Header: mc_program idf
+
+    3 DECLARATION: type listeparams ';' DECLARATION
+    4            | type listeparams ';'
+
+    5 listeparams: listeparams ',' idf
+    6            | idf
+
+    7 type: mc_integer
+    8     | mc_real
+
+    9 INSTRUCTION: mc_inbegin ListeInstr mc_inend
+
+   10 ListeInstr: ListeInstr Instruction
+   11           | Instruction
+
+   12 Instruction: instaff
+   13            | instdiv
+   14            | instadd
+
+   15 instaff: idf '=' idf ';'
+   16        | idf '=' cst ';'
+
+   17 instdiv: idf '=' idf '/' idf ';'
+   18        | idf '=' idf '/' cst ';'
+
+   19 instadd: idf '=' idf '+' idf ';'
+   20        | idf '=' idf '+' cst ';'
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+'+' (43) 19 20
+',' (44) 5
+'/' (47) 17 18
+';' (59) 3 4 15 16 17 18 19 20
+'=' (61) 15 16 17 18 19 20
+error (256)
+mc_inbegin (258) 9
+mc_inend (259) 9
+mc_program (260) 2
+mc_pdec (261) 1
+err (262)
+mc_integer (263) 7
+mc_real (264) 8
+idf (265) 2 5 6 15 16 17 18 19 20
+cst (266) 16 18 20
+
+
+Nonterminals, with rules where they appear
+
+$accept (17)
+    on left: 0
+S (18)
+    on left: 1, on right: 0
+Header (19)
+    on left: 2, on right: 1
+DECLARATION (20)
+    on left: 3 4, on right: 1 3
+listeparams (21)
+    on left: 5 6, on right: 3 4 5
+type (22)
+    on left: 7 8, on right: 3 4
+INSTRUCTION (23)
+    on left: 9, on right: 1
+ListeInstr (24)
+    on left: 10 11, on right: 9 10
+Instruction (25)
+    on left: 12 13 14, on right: 10 11
+instaff (26)
+    on left: 15 16, on right: 12
+instdiv (27)
+    on left: 17 18, on right: 13
+instadd (28)
+    on left: 19 20, on right: 14
+
+
+state 0
+
+    0 $accept: . S $end
+
+    mc_program  shift, and go to state 1
+
+    S       go to state 2
+    Header  go to state 3
+
+
+state 1
+
+    2 Header: mc_program . idf
+
+    idf  shift, and go to state 4
+
+
+state 2
+
+    0 $accept: S . $end
+
+    $end  shift, and go to state 5
+
+
+state 3
+
+    1 S: Header . mc_pdec DECLARATION INSTRUCTION
+
+    mc_pdec  shift, and go to state 6
+
+
+state 4
+
+    2 Header: mc_program idf .
+
+    $default  reduce using rule 2 (Header)
+
+
+state 5
+
+    0 $accept: S $end .
+
+    $default  accept
+
+
+state 6
+
+    1 S: Header mc_pdec . DECLARATION INSTRUCTION
+
+    mc_integer  shift, and go to state 7
+    mc_real     shift, and go to state 8
+
+    DECLARATION  go to state 9
+    type         go to state 10
+
+
+state 7
+
+    7 type: mc_integer .
+
+    $default  reduce using rule 7 (type)
+
+
+state 8
+
+    8 type: mc_real .
+
+    $default  reduce using rule 8 (type)
+
+
+state 9
+
+    1 S: Header mc_pdec DECLARATION . INSTRUCTION
+
+    mc_inbegin  shift, and go to state 11
+
+    INSTRUCTION  go to state 12
+
+
+state 10
+
+    3 DECLARATION: type . listeparams ';' DECLARATION
+    4            | type . listeparams ';'
+
+    idf  shift, and go to state 13
+
+    listeparams  go to state 14
+
+
+state 11
+
+    9 INSTRUCTION: mc_inbegin . ListeInstr mc_inend
+
+    idf  shift, and go to state 15
+
+    ListeInstr   go to state 16
+    Instruction  go to state 17
+    instaff      go to state 18
+    instdiv      go to state 19
+    instadd      go to state 20
+
+
+state 12
+
+    1 S: Header mc_pdec DECLARATION INSTRUCTION .
+
+    $default  reduce using rule 1 (S)
+
+
+state 13
+
+    6 listeparams: idf .
+
+    $default  reduce using rule 6 (listeparams)
+
+
+state 14
+
+    3 DECLARATION: type listeparams . ';' DECLARATION
+    4            | type listeparams . ';'
+    5 listeparams: listeparams . ',' idf
+
+    ';'  shift, and go to state 21
+    ','  shift, and go to state 22
+
+
+state 15
+
+   15 instaff: idf . '=' idf ';'
+   16        | idf . '=' cst ';'
+   17 instdiv: idf . '=' idf '/' idf ';'
+   18        | idf . '=' idf '/' cst ';'
+   19 instadd: idf . '=' idf '+' idf ';'
+   20        | idf . '=' idf '+' cst ';'
+
+    '='  shift, and go to state 23
+
+
+state 16
+
+    9 INSTRUCTION: mc_inbegin ListeInstr . mc_inend
+   10 ListeInstr: ListeInstr . Instruction
+
+    mc_inend  shift, and go to state 24
+    idf       shift, and go to state 15
+
+    Instruction  go to state 25
+    instaff      go to state 18
+    instdiv      go to state 19
+    instadd      go to state 20
+
+
+state 17
+
+   11 ListeInstr: Instruction .
+
+    $default  reduce using rule 11 (ListeInstr)
+
+
+state 18
+
+   12 Instruction: instaff .
+
+    $default  reduce using rule 12 (Instruction)
+
+
+state 19
+
+   13 Instruction: instdiv .
+
+    $default  reduce using rule 13 (Instruction)
+
+
+state 20
+
+   14 Instruction: instadd .
+
+    $default  reduce using rule 14 (Instruction)
+
+
+state 21
+
+    3 DECLARATION: type listeparams ';' . DECLARATION
+    4            | type listeparams ';' .
+
+    mc_integer  shift, and go to state 7
+    mc_real     shift, and go to state 8
+
+    $default  reduce using rule 4 (DECLARATION)
+
+    DECLARATION  go to state 26
+    type         go to state 10
+
+
+state 22
+
+    5 listeparams: listeparams ',' . idf
+
+    idf  shift, and go to state 27
+
+
+state 23
+
+   15 instaff: idf '=' . idf ';'
+   16        | idf '=' . cst ';'
+   17 instdiv: idf '=' . idf '/' idf ';'
+   18        | idf '=' . idf '/' cst ';'
+   19 instadd: idf '=' . idf '+' idf ';'
+   20        | idf '=' . idf '+' cst ';'
+
+    idf  shift, and go to state 28
+    cst  shift, and go to state 29
+
+
+state 24
+
+    9 INSTRUCTION: mc_inbegin ListeInstr mc_inend .
+
+    $default  reduce using rule 9 (INSTRUCTION)
+
+
+state 25
+
+   10 ListeInstr: ListeInstr Instruction .
+
+    $default  reduce using rule 10 (ListeInstr)
+
+
+state 26
+
+    3 DECLARATION: type listeparams ';' DECLARATION .
+
+    $default  reduce using rule 3 (DECLARATION)
+
+
+state 27
+
+    5 listeparams: listeparams ',' idf .
+
+    $default  reduce using rule 5 (listeparams)
+
+
+state 28
+
+   15 instaff: idf '=' idf . ';'
+   17 instdiv: idf '=' idf . '/' idf ';'
+   18        | idf '=' idf . '/' cst ';'
+   19 instadd: idf '=' idf . '+' idf ';'
+   20        | idf '=' idf . '+' cst ';'
+
+    ';'  shift, and go to state 30
+    '/'  shift, and go to state 31
+    '+'  shift, and go to state 32
+
+
+state 29
+
+   16 instaff: idf '=' cst . ';'
+
+    ';'  shift, and go to state 33
+
+
+state 30
+
+   15 instaff: idf '=' idf ';' .
+
+    $default  reduce using rule 15 (instaff)
+
+
+state 31
+
+   17 instdiv: idf '=' idf '/' . idf ';'
+   18        | idf '=' idf '/' . cst ';'
+
+    idf  shift, and go to state 34
+    cst  shift, and go to state 35
+
+
+state 32
+
+   19 instadd: idf '=' idf '+' . idf ';'
+   20        | idf '=' idf '+' . cst ';'
+
+    idf  shift, and go to state 36
+    cst  shift, and go to state 37
+
+
+state 33
+
+   16 instaff: idf '=' cst ';' .
+
+    $default  reduce using rule 16 (instaff)
+
+
+state 34
+
+   17 instdiv: idf '=' idf '/' idf . ';'
+
+    ';'  shift, and go to state 38
+
+
+state 35
+
+   18 instdiv: idf '=' idf '/' cst . ';'
+
+    ';'  shift, and go to state 39
+
+
+state 36
+
+   19 instadd: idf '=' idf '+' idf . ';'
+
+    ';'  shift, and go to state 40
+
+
+state 37
+
+   20 instadd: idf '=' idf '+' cst . ';'
+
+    ';'  shift, and go to state 41
+
+
+state 38
+
+   17 instdiv: idf '=' idf '/' idf ';' .
+
+    $default  reduce using rule 17 (instdiv)
+
+
+state 39
+
+   18 instdiv: idf '=' idf '/' cst ';' .
+
+    $default  reduce using rule 18 (instdiv)
+
+
+state 40
+
+   19 instadd: idf '=' idf '+' idf ';' .
+
+    $default  reduce using rule 19 (instadd)
+
+
+state 41
+
+   20 instadd: idf '=' idf '+' cst ';' .
+
+    $default  reduce using rule 20 (instadd)
