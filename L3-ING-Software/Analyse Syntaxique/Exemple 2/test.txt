@@ -1,0 +1,8 @@
+// Partie Declaration 
+// Voici une suite de declaration 
+
+int x; 
+float y; 
+int m,b,h;
+
+float h

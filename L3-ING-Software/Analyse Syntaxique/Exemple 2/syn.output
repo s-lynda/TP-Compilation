@@ -1,0 +1,168 @@
+Terminals unused in grammar
+
+   err
+
+
+Grammar
+
+    0 $accept: S $end
+
+    1 S: Declaration
+
+    2 Declaration: dec Declaration
+    3            | dec
+
+    4 dec: TYPE ListeIDF ';'
+
+    5 TYPE: mc_int
+    6     | mc_float
+
+    7 ListeIDF: idf ',' ListeIDF
+    8         | idf
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+',' (44) 7
+';' (59) 4
+error (256)
+mc_int (258) 5
+mc_float (259) 6
+idf (260) 7 8
+err (261)
+
+
+Nonterminals, with rules where they appear
+
+$accept (9)
+    on left: 0
+S (10)
+    on left: 1, on right: 0
+Declaration (11)
+    on left: 2 3, on right: 1 2
+dec (12)
+    on left: 4, on right: 2 3
+TYPE (13)
+    on left: 5 6, on right: 4
+ListeIDF (14)
+    on left: 7 8, on right: 4 7
+
+
+state 0
+
+    0 $accept: . S $end
+
+    mc_int    shift, and go to state 1
+    mc_float  shift, and go to state 2
+
+    S            go to state 3
+    Declaration  go to state 4
+    dec          go to state 5
+    TYPE         go to state 6
+
+
+state 1
+
+    5 TYPE: mc_int .
+
+    $default  reduce using rule 5 (TYPE)
+
+
+state 2
+
+    6 TYPE: mc_float .
+
+    $default  reduce using rule 6 (TYPE)
+
+
+state 3
+
+    0 $accept: S . $end
+
+    $end  shift, and go to state 7
+
+
+state 4
+
+    1 S: Declaration .
+
+    $default  reduce using rule 1 (S)
+
+
+state 5
+
+    2 Declaration: dec . Declaration
+    3            | dec .
+
+    mc_int    shift, and go to state 1
+    mc_float  shift, and go to state 2
+
+    $default  reduce using rule 3 (Declaration)
+
+    Declaration  go to state 8
+    dec          go to state 5
+    TYPE         go to state 6
+
+
+state 6
+
+    4 dec: TYPE . ListeIDF ';'
+
+    idf  shift, and go to state 9
+
+    ListeIDF  go to state 10
+
+
+state 7
+
+    0 $accept: S $end .
+
+    $default  accept
+
+
+state 8
+
+    2 Declaration: dec Declaration .
+
+    $default  reduce using rule 2 (Declaration)
+
+
+state 9
+
+    7 ListeIDF: idf . ',' ListeIDF
+    8         | idf .
+
+    ','  shift, and go to state 11
+
+    $default  reduce using rule 8 (ListeIDF)
+
+
+state 10
+
+    4 dec: TYPE ListeIDF . ';'
+
+    ';'  shift, and go to state 12
+
+
+state 11
+
+    7 ListeIDF: idf ',' . ListeIDF
+
+    idf  shift, and go to state 9
+
+    ListeIDF  go to state 13
+
+
+state 12
+
+    4 dec: TYPE ListeIDF ';' .
+
+    $default  reduce using rule 4 (dec)
+
+
+state 13
+
+    7 ListeIDF: idf ',' ListeIDF .
+
+    $default  reduce using rule 7 (ListeIDF)
