@@ -631,7 +631,7 @@ YY_RULE_SETUP
 case 4:
 YY_RULE_SETUP
 #line 15 "lex.l"
-{col=col+yyleng; printf("%s reconnu\n,",yytext);return yytext[0];}
+{col=col+yyleng; printf("%s reconnu\n",yytext); return yytext[0];}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP

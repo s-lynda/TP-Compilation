@@ -8,7 +8,9 @@ int col=1;
 %%
 S: Declaration {printf("Declaration correcte");
 }
-Declaration: dec Declaration | dec ;
+Declaration: dec Declaration 
+            | dec 
+            ;
 dec: TYPE ListeIDF ';';
 TYPE: mc_int 
     | mc_float 

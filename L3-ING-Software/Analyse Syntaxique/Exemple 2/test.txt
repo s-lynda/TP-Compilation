@@ -4,5 +4,5 @@
 int x; 
 float y; 
 int m,b,h;
-
+// Il manque le ; dans cette declaration 
 float h

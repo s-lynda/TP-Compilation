@@ -12,7 +12,7 @@ comment "//".*
 "int" {col=col+yyleng; printf("%s reconnu\n",yytext);return mc_int;}
 "float" {col=col+yyleng; printf("%s reconnu\n",yytext);return mc_float;}
 {IDF} {col=col+yyleng; printf("%s reconnu\n",yytext);return idf;}
-[,;] {col=col+yyleng; printf("%s reconnu\n,",yytext);return yytext[0];}
+[,;] {col=col+yyleng; printf("%s reconnu\n",yytext); return yytext[0];}
 {comment} {printf("commentaire sur une seule ligne reconnu \n");}
 [ \t]
 \n {nb_ligne++; col=1;}

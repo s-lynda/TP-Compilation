@@ -408,7 +408,7 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,     9,     9,    11,    11,    12,    13,    14,    16,    17
+       0,     9,     9,    11,    12,    14,    15,    16,    18,    19
 };
 #endif
 
@@ -1529,7 +1529,7 @@ yyreturn:
 
 
 /* Line 1675 of yacc.c  */
-#line 20 "syn.y"
+#line 22 "syn.y"
 
 main ()
 {
