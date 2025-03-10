@@ -1,0 +1,10 @@
+Programme M1_IL_IV
+{
+   VAR  INTEGER : A // B // X $ 
+   VAR  INTEGER : Tab[5] $
+   CONST  INTEGER : C=5// R=15 $
+   A:=5$
+   B:=5$
+   A:=A/0$
+   B:=C$ 
+}

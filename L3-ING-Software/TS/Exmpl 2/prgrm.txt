@@ -1,0 +1,10 @@
+Program  M1ILIV
+PDec
+integer x,i,j;
+integer Y;
+Reel  y,z,a;
+InBEGIN
+ i=2;
+ j=i/0;
+ x=x+1;
+InEnD

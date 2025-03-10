@@ -1,0 +1,510 @@
+Terminals unused in grammar
+
+   mc_import
+   mc_stdio
+   mc_array
+   diaz
+
+
+Grammar
+
+    0 $accept: S $end
+
+    1 S: mc_pgm idf acco Program accf
+
+    2 Program: LISTE_DEC LISTE_INSTR
+
+    3 LISTE_DEC: DEC LISTE_DEC
+    4          | /* empty */
+
+    5 DEC: DEC_VAR
+    6    | DEC_CONST
+
+    7 DEC_VAR: mc_var TYPE dpt LIST_IDF fin
+    8        | mc_var TYPE dpt DEC_TAB fin
+
+    9 DEC_TAB: idf crov cst crfm
+
+   10 DEC_CONST: mc_const TYPE dpt LIST_IDF_CST fin
+
+   11 LIST_IDF_CST: idf eg cst sep LIST_IDF_CST
+   12             | idf eg cst
+
+   13 LIST_IDF: idf sep LIST_IDF
+   14         | idf
+
+   15 TYPE: mc_entier
+
+   16 LISTE_INSTR: INST_AFF LISTE_INSTR
+   17            | /* empty */
+
+   18 INST_AFF: idf aff EXPRESSION fin
+
+   19 EXPRESSION: idf
+   20           | cst
+   21           | idf divis cst
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+error (256)
+mc_import (258)
+mc_stdio (259)
+mc_array (260)
+mc_pgm (261) 1
+mc_entier (262) 15
+mc_var (263) 7 8
+mc_const (264) 10
+divis (265) 21
+diaz (266)
+acco (267) 1
+accf (268) 1
+dpt (269) 7 8 10
+eg (270) 11 12
+aff (271) 18
+crov (272) 9
+crfm (273) 9
+fin (274) 7 8 10 18
+sep (275) 11 13
+idf (276) 1 9 11 12 13 14 18 19 21
+cst (277) 9 11 12 20 21
+
+
+Nonterminals, with rules where they appear
+
+$accept (23)
+    on left: 0
+S (24)
+    on left: 1, on right: 0
+Program (25)
+    on left: 2, on right: 1
+LISTE_DEC (26)
+    on left: 3 4, on right: 2 3
+DEC (27)
+    on left: 5 6, on right: 3
+DEC_VAR (28)
+    on left: 7 8, on right: 5
+DEC_TAB (29)
+    on left: 9, on right: 8
+DEC_CONST (30)
+    on left: 10, on right: 6
+LIST_IDF_CST (31)
+    on left: 11 12, on right: 10 11
+LIST_IDF (32)
+    on left: 13 14, on right: 7 13
+TYPE (33)
+    on left: 15, on right: 7 8 10
+LISTE_INSTR (34)
+    on left: 16 17, on right: 2 16
+INST_AFF (35)
+    on left: 18, on right: 16
+EXPRESSION (36)
+    on left: 19 20 21, on right: 18
+
+
+state 0
+
+    0 $accept: . S $end
+
+    mc_pgm  shift, and go to state 1
+
+    S  go to state 2
+
+
+state 1
+
+    1 S: mc_pgm . idf acco Program accf
+
+    idf  shift, and go to state 3
+
+
+state 2
+
+    0 $accept: S . $end
+
+    $end  shift, and go to state 4
+
+
+state 3
+
+    1 S: mc_pgm idf . acco Program accf
+
+    acco  shift, and go to state 5
+
+
+state 4
+
+    0 $accept: S $end .
+
+    $default  accept
+
+
+state 5
+
+    1 S: mc_pgm idf acco . Program accf
+
+    mc_var    shift, and go to state 6
+    mc_const  shift, and go to state 7
+
+    $default  reduce using rule 4 (LISTE_DEC)
+
+    Program    go to state 8
+    LISTE_DEC  go to state 9
+    DEC        go to state 10
+    DEC_VAR    go to state 11
+    DEC_CONST  go to state 12
+
+
+state 6
+
+    7 DEC_VAR: mc_var . TYPE dpt LIST_IDF fin
+    8        | mc_var . TYPE dpt DEC_TAB fin
+
+    mc_entier  shift, and go to state 13
+
+    TYPE  go to state 14
+
+
+state 7
+
+   10 DEC_CONST: mc_const . TYPE dpt LIST_IDF_CST fin
+
+    mc_entier  shift, and go to state 13
+
+    TYPE  go to state 15
+
+
+state 8
+
+    1 S: mc_pgm idf acco Program . accf
+
+    accf  shift, and go to state 16
+
+
+state 9
+
+    2 Program: LISTE_DEC . LISTE_INSTR
+
+    idf  shift, and go to state 17
+
+    $default  reduce using rule 17 (LISTE_INSTR)
+
+    LISTE_INSTR  go to state 18
+    INST_AFF     go to state 19
+
+
+state 10
+
+    3 LISTE_DEC: DEC . LISTE_DEC
+
+    mc_var    shift, and go to state 6
+    mc_const  shift, and go to state 7
+
+    $default  reduce using rule 4 (LISTE_DEC)
+
+    LISTE_DEC  go to state 20
+    DEC        go to state 10
+    DEC_VAR    go to state 11
+    DEC_CONST  go to state 12
+
+
+state 11
+
+    5 DEC: DEC_VAR .
+
+    $default  reduce using rule 5 (DEC)
+
+
+state 12
+
+    6 DEC: DEC_CONST .
+
+    $default  reduce using rule 6 (DEC)
+
+
+state 13
+
+   15 TYPE: mc_entier .
+
+    $default  reduce using rule 15 (TYPE)
+
+
+state 14
+
+    7 DEC_VAR: mc_var TYPE . dpt LIST_IDF fin
+    8        | mc_var TYPE . dpt DEC_TAB fin
+
+    dpt  shift, and go to state 21
+
+
+state 15
+
+   10 DEC_CONST: mc_const TYPE . dpt LIST_IDF_CST fin
+
+    dpt  shift, and go to state 22
+
+
+state 16
+
+    1 S: mc_pgm idf acco Program accf .
+
+    $default  reduce using rule 1 (S)
+
+
+state 17
+
+   18 INST_AFF: idf . aff EXPRESSION fin
+
+    aff  shift, and go to state 23
+
+
+state 18
+
+    2 Program: LISTE_DEC LISTE_INSTR .
+
+    $default  reduce using rule 2 (Program)
+
+
+state 19
+
+   16 LISTE_INSTR: INST_AFF . LISTE_INSTR
+
+    idf  shift, and go to state 17
+
+    $default  reduce using rule 17 (LISTE_INSTR)
+
+    LISTE_INSTR  go to state 24
+    INST_AFF     go to state 19
+
+
+state 20
+
+    3 LISTE_DEC: DEC LISTE_DEC .
+
+    $default  reduce using rule 3 (LISTE_DEC)
+
+
+state 21
+
+    7 DEC_VAR: mc_var TYPE dpt . LIST_IDF fin
+    8        | mc_var TYPE dpt . DEC_TAB fin
+
+    idf  shift, and go to state 25
+
+    DEC_TAB   go to state 26
+    LIST_IDF  go to state 27
+
+
+state 22
+
+   10 DEC_CONST: mc_const TYPE dpt . LIST_IDF_CST fin
+
+    idf  shift, and go to state 28
+
+    LIST_IDF_CST  go to state 29
+
+
+state 23
+
+   18 INST_AFF: idf aff . EXPRESSION fin
+
+    idf  shift, and go to state 30
+    cst  shift, and go to state 31
+
+    EXPRESSION  go to state 32
+
+
+state 24
+
+   16 LISTE_INSTR: INST_AFF LISTE_INSTR .
+
+    $default  reduce using rule 16 (LISTE_INSTR)
+
+
+state 25
+
+    9 DEC_TAB: idf . crov cst crfm
+   13 LIST_IDF: idf . sep LIST_IDF
+   14         | idf .
+
+    crov  shift, and go to state 33
+    sep   shift, and go to state 34
+
+    $default  reduce using rule 14 (LIST_IDF)
+
+
+state 26
+
+    8 DEC_VAR: mc_var TYPE dpt DEC_TAB . fin
+
+    fin  shift, and go to state 35
+
+
+state 27
+
+    7 DEC_VAR: mc_var TYPE dpt LIST_IDF . fin
+
+    fin  shift, and go to state 36
+
+
+state 28
+
+   11 LIST_IDF_CST: idf . eg cst sep LIST_IDF_CST
+   12             | idf . eg cst
+
+    eg  shift, and go to state 37
+
+
+state 29
+
+   10 DEC_CONST: mc_const TYPE dpt LIST_IDF_CST . fin
+
+    fin  shift, and go to state 38
+
+
+state 30
+
+   19 EXPRESSION: idf .
+   21           | idf . divis cst
+
+    divis  shift, and go to state 39
+
+    $default  reduce using rule 19 (EXPRESSION)
+
+
+state 31
+
+   20 EXPRESSION: cst .
+
+    $default  reduce using rule 20 (EXPRESSION)
+
+
+state 32
+
+   18 INST_AFF: idf aff EXPRESSION . fin
+
+    fin  shift, and go to state 40
+
+
+state 33
+
+    9 DEC_TAB: idf crov . cst crfm
+
+    cst  shift, and go to state 41
+
+
+state 34
+
+   13 LIST_IDF: idf sep . LIST_IDF
+
+    idf  shift, and go to state 42
+
+    LIST_IDF  go to state 43
+
+
+state 35
+
+    8 DEC_VAR: mc_var TYPE dpt DEC_TAB fin .
+
+    $default  reduce using rule 8 (DEC_VAR)
+
+
+state 36
+
+    7 DEC_VAR: mc_var TYPE dpt LIST_IDF fin .
+
+    $default  reduce using rule 7 (DEC_VAR)
+
+
+state 37
+
+   11 LIST_IDF_CST: idf eg . cst sep LIST_IDF_CST
+   12             | idf eg . cst
+
+    cst  shift, and go to state 44
+
+
+state 38
+
+   10 DEC_CONST: mc_const TYPE dpt LIST_IDF_CST fin .
+
+    $default  reduce using rule 10 (DEC_CONST)
+
+
+state 39
+
+   21 EXPRESSION: idf divis . cst
+
+    cst  shift, and go to state 45
+
+
+state 40
+
+   18 INST_AFF: idf aff EXPRESSION fin .
+
+    $default  reduce using rule 18 (INST_AFF)
+
+
+state 41
+
+    9 DEC_TAB: idf crov cst . crfm
+
+    crfm  shift, and go to state 46
+
+
+state 42
+
+   13 LIST_IDF: idf . sep LIST_IDF
+   14         | idf .
+
+    sep  shift, and go to state 34
+
+    $default  reduce using rule 14 (LIST_IDF)
+
+
+state 43
+
+   13 LIST_IDF: idf sep LIST_IDF .
+
+    $default  reduce using rule 13 (LIST_IDF)
+
+
+state 44
+
+   11 LIST_IDF_CST: idf eg cst . sep LIST_IDF_CST
+   12             | idf eg cst .
+
+    sep  shift, and go to state 47
+
+    $default  reduce using rule 12 (LIST_IDF_CST)
+
+
+state 45
+
+   21 EXPRESSION: idf divis cst .
+
+    $default  reduce using rule 21 (EXPRESSION)
+
+
+state 46
+
+    9 DEC_TAB: idf crov cst crfm .
+
+    $default  reduce using rule 9 (DEC_TAB)
+
+
+state 47
+
+   11 LIST_IDF_CST: idf eg cst sep . LIST_IDF_CST
+
+    idf  shift, and go to state 28
+
+    LIST_IDF_CST  go to state 48
+
+
+state 48
+
+   11 LIST_IDF_CST: idf eg cst sep LIST_IDF_CST .
+
+    $default  reduce using rule 11 (LIST_IDF_CST)
