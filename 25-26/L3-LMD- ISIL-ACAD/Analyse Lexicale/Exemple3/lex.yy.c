@@ -531,7 +531,7 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
 
-#line 14 "lexical.l"
+#line 13 "lexical.l"
 
 #line 537 "lex.yy.c"
 
@@ -618,82 +618,82 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 15 "lexical.l"
+#line 14 "lexical.l"
 {printf("MAIN\n");}
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 16 "lexical.l"
+#line 15 "lexical.l"
 {printf("OPEN_PARENTHESIS\n");}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 17 "lexical.l"
+#line 16 "lexical.l"
 {printf("CLOSE_PARENTHESIS\n");}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 18 "lexical.l"
+#line 17 "lexical.l"
 {printf("OPEN_BRACE\n");}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 19 "lexical.l"
+#line 18 "lexical.l"
 {printf("CLOSE_BRACE\n");}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 20 "lexical.l"
+#line 19 "lexical.l"
 {printf("SEMI_COLON\n");}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 21 "lexical.l"
+#line 20 "lexical.l"
 {printf("ASSIGN_OP\n");}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 22 "lexical.l"
+#line 21 "lexical.l"
 {printf("BACKSLASH\n");}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 23 "lexical.l"
+#line 22 "lexical.l"
 {printf("DOUBLE_BACKSLASH\n");}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 24 "lexical.l"
+#line 23 "lexical.l"
 {printf("QUOTE\n");}   
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 25 "lexical.l"
+#line 24 "lexical.l"
 {printf("IDENTIFIER\n");}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 26 "lexical.l"
+#line 25 "lexical.l"
 {printf("NUMBER\n");}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 27 "lexical.l"
+#line 26 "lexical.l"
 
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 28 "lexical.l"
+#line 27 "lexical.l"
 {nb_ligne++;}
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 29 "lexical.l"
+#line 28 "lexical.l"
 {printf("Lexical error at line %d \n",nb_ligne) ;}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 30 "lexical.l"
+#line 29 "lexical.l"
 ECHO;
 	YY_BREAK
 #line 700 "lex.yy.c"
@@ -1582,7 +1582,7 @@ int main()
 	return 0;
 	}
 #endif
-#line 30 "lexical.l"
+#line 29 "lexical.l"
 
 int main ()
 {
