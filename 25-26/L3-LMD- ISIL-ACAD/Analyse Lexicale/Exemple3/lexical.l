@@ -10,7 +10,6 @@ chiffre [0-9]
 IDF {lettre}({lettre}|{chiffre})*
 cst {chiffre}+
 /* -- Partie : Règles de traduction -- */
-
 %%
 "main" {printf("MAIN\n");}
 "(" {printf("OPEN_PARENTHESIS\n");}
