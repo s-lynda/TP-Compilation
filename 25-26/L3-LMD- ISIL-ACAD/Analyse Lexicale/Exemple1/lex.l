@@ -10,7 +10,7 @@ chiffre [0-9]
 IDF {lettre}({lettre}|{chiffre})*
 cst {chiffre}+
 
-/* -- Partie : Règles de production -- */
+/* -- Partie : Règles de traduction -- */
 %%
 "int" printf("KEYWORD\n");
 {IDF} printf ("IDENTIFIER\n");

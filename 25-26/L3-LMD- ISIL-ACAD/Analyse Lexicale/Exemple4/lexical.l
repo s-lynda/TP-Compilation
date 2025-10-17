@@ -13,7 +13,7 @@ cst {chiffre}+
 Comment1 "//".*
 Comment2 "/*"([^*]|\*+[^*/])*\*+"/"
 Comment3 "//"[^\n]*
-/* -- Partie : Règles de traduction -- */
+/* -- Partie : Règles de production -- */
 %%
 {IDF} printf ("IDF ");
 {cst} printf("cst ");

@@ -1,0 +1,19 @@
+"
+
+""
+
+{
+
+}
+
+main()
+{
+
+}
+
+yyyyy === 333;
+
+hello World :)
+
+\\ This is an input file
+\\\\ 

@@ -23,5 +23,5 @@ int main( )
 {
  yyin = fopen( "test.txt", "r" );
  if (yyin==NULL) printf("ERROR \n");
-   else yylex();
+ else yylex();
 }
