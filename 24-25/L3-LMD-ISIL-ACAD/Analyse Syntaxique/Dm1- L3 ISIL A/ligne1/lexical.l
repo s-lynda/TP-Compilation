@@ -16,8 +16,8 @@ import {col=col+yyleng; return mc_import;}
 math {col=col+yyleng; return mc_math;}
 lang {col=col+yyleng; return mc_lang;}
 ";" {col=col+yyleng; return pvg;}
-[ \t] {col++;}
+[ \t] {col+=yyleng;}
 \n {nb_ligne++; col=1;}
-. {printf("Erreur lexicale sur l'entite %s a la ligne %d et a la colonne %d \n",yytext,nb_ligne,col); 
+. {printf("Erreur lexicale sur l'entite %s a la ligne %d et a la colonne %d \n",yytext,nb_ligne,col); col+= yyleng;
     return err;}
 %%

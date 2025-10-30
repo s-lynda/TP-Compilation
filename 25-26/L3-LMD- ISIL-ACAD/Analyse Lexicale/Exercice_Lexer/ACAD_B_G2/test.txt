@@ -1,0 +1,20 @@
+Script ACAD_B;
+Vars
+// Déclaration des variables
+count, limit: Int;
+result: Real;
+Code
+Begin
+{
+// Calcul simple
+count := 7;
+limit := 20;
+result := limit / count ^+ 2 * 3;
+write(' this is the result');
+// Résultat final dans 'result'
+}
+Finish
+
+
+$*
+^^$

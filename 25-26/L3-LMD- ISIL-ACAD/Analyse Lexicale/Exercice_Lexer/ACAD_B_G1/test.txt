@@ -1,0 +1,20 @@
+Main ACAD_B;
+Section Variables
+%% Déclaration
+x, y, z : Integer;
+total: Float;
+Section Code
+Start
+{ %% Partie instructions
+x := 10;
+y := 3;
+z := x * y + 5;
+total := (x^ + y + z) / 2.5;
+print("fin de calcul");
+%% Fin du calcul
+}
+Stop
+
+$$
+
+^

@@ -21,6 +21,6 @@ DEC  {printf("ligne %d: %s reconnue \n",nb_ligne,yytext); col=col+yyleng; return
 ";" {printf("ligne %d: %s reconnue\n",nb_ligne,yytext); col=col+yyleng; return pvg;}
 [ \t] {col++;}
 \n {nb_ligne++; col=1;}
-. {printf("Erreur lexicale sur l'entite %s a la ligne %d et a la colonne %d \n",yytext,nb_ligne,col); 
+. {printf("Erreur lexicale sur l'entite %s a la ligne %d et a la colonne %d \n",yytext,nb_ligne,col); col+= yyleng; 
     return err;}
 %%

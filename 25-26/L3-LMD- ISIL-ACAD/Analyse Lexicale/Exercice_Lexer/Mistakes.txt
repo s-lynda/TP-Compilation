@@ -1,0 +1,6 @@
+operation [+|-||/|:=]
+"%%"  { ligne++; /* skip comment */ }
+"printf" printf("KEYWORD\n");
+printMessage  "print"[ \t]*"\(\""[^)]*"\"\)"
+"_"             { printf("Symbole : _\n"); }
+

@@ -1,0 +1,19 @@
+MainProgram ACADyyyyyyyyyyyyyyyyA;
+Declaration
+## Partie declaration
+L,S,K : Entier;
+F,W : Reel;
+Body
+begin
+{
+## Partie Instruction
+S := a + b;
+Prod := D *F - 3$ + 4 / 2 ;
+Write("ACAD A G2");
+}
+end
+
+
+$$$$$
+
+^^^^

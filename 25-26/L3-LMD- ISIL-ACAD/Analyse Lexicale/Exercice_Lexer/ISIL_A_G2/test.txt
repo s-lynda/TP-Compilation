@@ -1,0 +1,15 @@
+Program ISILA;
+Define
+## Déclaration des variables
+num1, num2 : Integer;
+ratio : Float;
+Execute
+Start
+{
+## Partie instructions
+num1 := 25;
+num2 := 5;
+ratio := (num1 - num2) * 2 + 3.5;
+## Fin du traitement
+}
+End

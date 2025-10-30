@@ -12,7 +12,8 @@ cst {chiffre}+
 {cst} {col=col+yyleng; printf("%s reconnu\n",yytext);return cst;}
 = {col=col+yyleng; printf("%s reconnu",yytext);return aff;}
 ; {col=col+yyleng; printf("%s reconnu\n,",yytext);return pvg;}
-[ \t]
+[ \t] {col+=yyleng;}
 \n {nb_ligne++; }
-. {printf("erreur lexicale sur l\'entite %s à la ligne %d , a la colonne %d\n",yytext,nb_ligne,col); return err;}
+. {printf("erreur lexicale sur l\'entite %s à la ligne %d , a la colonne %d\n",yytext,nb_ligne,col); col=col+yyleng; return err;}
 %%
+
