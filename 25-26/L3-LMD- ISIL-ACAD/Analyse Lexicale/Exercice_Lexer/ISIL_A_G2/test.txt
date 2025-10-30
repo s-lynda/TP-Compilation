@@ -13,3 +13,8 @@ ratio := (num1 - num2) * 2 + 3.5;
 ## Fin du traitement
 }
 End
+
+^^$$
+
+
+$
