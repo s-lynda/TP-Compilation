@@ -1,7 +1,7 @@
 %{
     #include <stdio.h>
-     int nb_ligne=1;
-    int col=1;
+     extern int nb_ligne;
+     extern int col;
     void yyerror(char *msg);
 %}
 

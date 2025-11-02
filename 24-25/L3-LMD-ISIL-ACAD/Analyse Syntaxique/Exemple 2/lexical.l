@@ -1,8 +1,8 @@
 /* Analyseur Lexicale*/
 %{
 #include "syntax.tab.h"
-extern int nb_ligne;
-extern int col;
+int nb_ligne=1;
+int col=1;
 %}
 lettre [a-zA-Z]
 chiffre [0-9]
