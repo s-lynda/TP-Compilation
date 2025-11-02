@@ -1,7 +1,7 @@
 %{
 #include "syn.tab.h"
-extern int nb_ligne;
-extern int col;
+int nb_ligne=1;
+int col=1;
 %}
 lettre [a-zA-Z]
 chiffre [0-9]
@@ -12,8 +12,8 @@ cst {chiffre}+
 {cst} {col=col+yyleng; printf("%s reconnu\n",yytext);return cst;}
 = {col=col+yyleng; printf("%s reconnu",yytext);return aff;}
 ; {col=col+yyleng; printf("%s reconnu\n,",yytext);return pvg;}
-[ \t]
-\n {nb_ligne++; }
-. {printf("erreur lexicale sur l\'entite %s à la ligne %d , a la colonne %d\n",yytext,nb_ligne,col); return err;}
+[ \t] {col+=yyleng;}
+\n {nb_ligne++; col=1;}
+. {printf("erreur lexicale sur l\'entite %s à la ligne %d , a la colonne %d\n",yytext,nb_ligne,col); col+=yyleng;return err;}
 %%
 

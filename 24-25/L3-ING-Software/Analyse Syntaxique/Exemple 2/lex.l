@@ -14,8 +14,8 @@ comment "//".*
 {IDF} {col=col+yyleng; printf("%s reconnu\n",yytext);return idf;}
 [,;] {col=col+yyleng; printf("%s reconnu\n",yytext); return yytext[0];}
 {comment} {printf("commentaire sur une seule ligne reconnu \n");}
-[ \t]
+[ \t] {col=col+yyleng;}
 \n {nb_ligne++; col=1;}
-. {printf("erreur lexicale sur l\'entite %s à la ligne %d , a la colonne %d\n",yytext,nb_ligne,col); return err;}
+. {printf("erreur lexicale sur l\'entite %s à la ligne %d , a la colonne %d\n",yytext,nb_ligne,col); col=col+yyleng; return err;}
 %%
 
