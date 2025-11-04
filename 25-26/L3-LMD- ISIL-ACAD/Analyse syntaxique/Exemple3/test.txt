@@ -1,0 +1,13 @@
+main()
+{
+
+     %% Partie declaration 
+     int x=2;
+     float y=2.5;
+     float z,l,k;
+
+    %% Partie instructions
+        x=x+1; 
+        z=z-2;
+
+}
