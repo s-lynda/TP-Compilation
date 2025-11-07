@@ -396,7 +396,7 @@ char *yytext;
 int nb_ligne=1;
 int col=1;
 /* Partie de définitions des expressions régulières */
-/* Partie des règles de production */
+/* Partie des règles de traduction */
 #line 401 "lex.yy.c"
 
 /* Macros after this point can all be overridden by user definitions in

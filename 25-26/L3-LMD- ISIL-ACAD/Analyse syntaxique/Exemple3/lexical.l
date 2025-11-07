@@ -23,7 +23,7 @@ IDF {lettre}({lettre}|{chiffre})*
 cst {chiffre}+
 reel {chiffre}+\.{chiffre}+
 commentaire %%[^\n]*
-/* Partie des règles de production */
+/* Partie des règles de traduction */
 %%
 "main" {col+=yyleng; printf("%s reconnu\n",yytext);return mc_main;}
 "int" {col+=yyleng; printf("%s reconnu\n",yytext);return mc_int;}
