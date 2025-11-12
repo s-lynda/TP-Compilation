@@ -416,9 +416,9 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,     9,     9,     9,    10,    11,    13,    15,    17,    18,
-      20,    20,    21,    23,    24,    25,    27,    28,    30,    32,
-      33,    35
+       0,    10,    10,    10,    11,    12,    14,    16,    18,    19,
+      22,    22,    23,    25,    26,    27,    29,    30,    32,    34,
+      35,    37
 };
 #endif
 
@@ -1339,7 +1339,7 @@ yyreduce:
         case 21:
 
 /* Line 1455 of yacc.c  */
-#line 35 "syn.y"
+#line 37 "syn.y"
     {
         printf("------------  Syntaxe correcte -------------------\n");
         YYACCEPT;
@@ -1561,7 +1561,7 @@ yyreturn:
 
 
 /* Line 1675 of yacc.c  */
-#line 40 "syn.y"
+#line 42 "syn.y"
 
 main ()
 {

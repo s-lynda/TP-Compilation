@@ -7,7 +7,7 @@ main()
      float z,l,k;
 
     %% Partie instructions
-        x=;x+1; 
+        x=x+1; 
         z=z-2;
 
 }

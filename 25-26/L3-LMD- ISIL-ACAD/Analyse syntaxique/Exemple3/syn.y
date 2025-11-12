@@ -6,6 +6,7 @@ extern int col;
 %start main_program
 %token mc_main mc_int mc_flt idf cst real err 
 %%
+
 OP: '+' | '-';
 expression: idf
             |NUMBER
@@ -17,6 +18,7 @@ INSTR: idf '=' EXPR ';'
 INSTRUCTION: INSTR INSTRUCTION
             | 
             ;
+
 NUMBER: cst |real;            
 initialisation:  idf '=' NUMBER
                 ;            

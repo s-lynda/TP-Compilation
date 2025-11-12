@@ -1,0 +1,17 @@
+Module ACAD_G4_2;
+Declare
+ %% Zone des variables
+length, width: integer;
+surface, ratio: real;
+Run
+StartBlock
+{
+ %% Partie operationnelle
+   length = 10;
+   
+   width = 8;
+   surface = length * width;
+   ratio = surface / 3.2 + (length - width);
+  %% Fin du bloc d'instructions
+}
+StopBlock
