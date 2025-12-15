@@ -7,7 +7,7 @@ extern int col;
 %token cst pvg aff err idf
 %%
 S: idf aff cst pvg S {
-    /*--Il va lire qu'une seule instruction de ce type et il arrete l'analyse syntaxique --*/
+    /*--Il va lire  plusieurs exemples --*/
         printf("syntaxe correcte\n");
         YYACCEPT;
         }

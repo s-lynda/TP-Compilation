@@ -1,0 +1,19 @@
+VAR_SECTION
+{ 
+  %% declaration part
+  Integer x <- 10;
+  Reel y <- 3.14;
+  Integer m,k,l;
+}
+
+CODE_SECTION
+{ %% Instruction part
+  x <-23;
+  result <- x * y + 2.5;
+  z <- x + y / 2 - 1.75;
+  output("execution ended");
+}
+
+EndProgram;
+
+@@@@
