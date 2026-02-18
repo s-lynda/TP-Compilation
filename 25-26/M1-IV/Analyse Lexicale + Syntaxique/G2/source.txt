@@ -1,0 +1,15 @@
+Program MIV_Lexer
+DEC 
+ int x #
+ float z | y #
+FinDEC
+DebutProg
+//* Instruction *//
+
+If (x equal y ) Do {
+    printWindow('Hello') #
+}Else{
+    printWindow('Hello1 /D",3)#
+}
+
+FinProg

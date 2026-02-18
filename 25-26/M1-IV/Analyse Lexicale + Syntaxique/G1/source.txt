@@ -1,0 +1,13 @@
+Programme P(){
+	entier  a := 9
+	chaine <= " Miv"
+	affiche(chaine)
+	lire(a)
+	affiche(<a>)
+
+	si [a=9] alors{
+      		affiche("vous avez pas changer val de a")
+	}sinon{
+		affiche("la nouvelle valeur de a " < a>)
+	}
+};

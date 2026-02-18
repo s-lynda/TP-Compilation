@@ -1,0 +1,15 @@
+Declaration:
+{
+    int x,y,z;
+    flot a;
+}
+Code: 
+{
+    print("Hello")
+    IF(x>5) Do {
+        x <= w+Z;
+        u <= t*2 / 4 -3;
+    
+    }
+}
+END;
