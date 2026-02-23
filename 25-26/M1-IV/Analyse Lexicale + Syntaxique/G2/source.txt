@@ -9,7 +9,7 @@ DebutProg
 If (x equal y ) Do {
     printWindow('Hello') #
 }Else{
-    printWindow('Hello1 /D",3)#
+    printWindow('Hello1 %d',3)#
 }
 
 FinProg

@@ -1,6 +1,6 @@
 Programme P(){
 	entier  a := 9
-	chaine <= " Miv"
+	String chaine <= " Miv"
 	affiche(chaine)
 	lire(a)
 	affiche(<a>)
