@@ -1,0 +1,30 @@
+/* Okey 
+ hello 
+*/
+
+
+*
+$
+
+#
+
+
+x=5;;
+
+
+x=5; 
+
+L3 ACAD B
+L3 ISIL B
+
+\ L3 ISIL 1
+"L3 ISIL A G1"
+\\ Test antislash
+\
+ABCDEFGHIJ1234
+abcdefghijXYZ789
+
+// Hey How are y
+
+// Hello what the Hell 
+
