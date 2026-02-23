@@ -1,7 +1,7 @@
 %{
 #include <stdio.h>
 extern char *yytext;   
-int nb_ligne=1;
+extern int nb_ligne;
 void yyerror( char *s) ;
 %}
 %start S

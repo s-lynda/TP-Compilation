@@ -1,6 +1,6 @@
 %{  
  #include "syntax.tab.h"   
- extern int nb_ligne;
+  int nb_ligne=1;
 %}
 IDF [a-zA-Z][a-zA-Z0-9]*
 entier [0-9]+

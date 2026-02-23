@@ -1,6 +1,6 @@
 %{
 
-int nb_ligne=1;
+extern int nb_ligne;
 int yyerror(char *s);
 %}
 

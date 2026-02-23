@@ -1,0 +1,27 @@
+PROGRAMME SOFT_G3;
+Var:
+[
+i, j : int;
+sum : float;
+A: int[50]; // commentaire sur une seule ligne
+]
+
+Begin
+{
+##
+Boucle de calcul
+commentaire sur plusieurs lignes
+##
+
+sum := 0;
+Tantque((a>20)AND(h==4)){
+    sum := sum + i * PI;
+}
+Lire(sum);
+SI(sum >= 50.0)ALORS{
+    Print("Valeur elevee");
+}SINON{
+    Print("Valeur faible");
+}FinSI;
+}
+EndProgram;

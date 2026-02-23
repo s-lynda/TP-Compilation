@@ -1,7 +1,3 @@
-/* Okey 
- hello 
-*/
-
 
 *
 $
@@ -11,11 +7,13 @@ $
 
 x=5;;
 
-
+;
 x=5; 
 
 L3 ACAD B
 L3 ISIL B
+
+ING3SOFT_WARE
 
 \ L3 ISIL 1
 "L3 ISIL A G1"

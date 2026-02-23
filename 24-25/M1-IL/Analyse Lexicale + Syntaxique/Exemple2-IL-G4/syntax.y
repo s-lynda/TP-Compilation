@@ -1,6 +1,6 @@
 %{
-int nb_ligne=1;
-int col=1;
+extern int nb_ligne;
+extern int col;
 int yyerror(char*s);
 %}
 %token mc_p mc_int mc_if mc_else mc_do mc_print crf cro

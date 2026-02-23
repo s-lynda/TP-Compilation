@@ -1,7 +1,7 @@
 %{  
  #include "syntax.tab.h"   
- extern int nb_ligne;
- extern int col;
+ int nb_ligne=1;
+  int col=1;
 %}
 /* %option noyywrap : si on souhaite désactiver yywrap => On ne va pas la définir*/
 lettre [a-zA-Z]

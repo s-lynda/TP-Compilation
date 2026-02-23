@@ -1,0 +1,38 @@
+Program SOFT_G2;
+
+DATA:
+[
+    !! Partie declaration 
+    i;j;k;l : integer#
+    total : integer#
+    average : Real#
+    values : integer[5]#
+]
+
+EXE
+[
+    //*
+    Partie instruction 
+    Ceci est un commentaire multi_ligne 
+    *//
+
+    total := 0#
+    i := 0#
+
+    While(i < 5){
+        INPUT(values[i])#
+        total := total + values[i]#
+        i := i + 1#
+    }
+
+    average := total / 5#
+
+    If((average >= 10)&&(j==43)){
+        OUTPUT('Moyenne valide')#
+    }
+    Else{
+        OUTPUT('Moyenne insuffisante')#
+    }
+    EndIf
+]
+EndProgram.

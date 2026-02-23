@@ -1,0 +1,31 @@
+Script SOFT_G1;
+Variables:
+[
+x|y|z:integer;
+a|c: Real;
+U: Real[20]; ## Declaration d'un tableau
+]
+Body:
+[
+    
+"""
+Partie Instructions
+Ceci est un commentaire sur plusieurs lignes
+"""
+
+Write("Debut de l'execution ");
+a := 2.3;
+x := 4;
+If((a>1.5)OR(x<3+t))then{
+   Write("Correct");
+}ElseIf{
+    Read(y);
+    y:=y/2+E-5*R;
+}EndIf;
+
+Do{
+    z := z+1;
+}While(x>30);
+
+]
+EndScript;

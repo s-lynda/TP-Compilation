@@ -379,7 +379,7 @@ char *yytext;
         int nb_ligne=1;
         int col=0;
 /* -- Partie : Expressions régulières -- */
-/* -- Partie : Règles de production -- */
+/* -- Partie : Règles de traduction -- */
 #line 384 "lex.yy.c"
 
 /* Macros after this point can all be overridden by user definitions in
@@ -619,17 +619,17 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 YY_RULE_SETUP
 #line 18 "lexical.l"
-printf ("IDF ");
+printf ("IDF \n");
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
 #line 19 "lexical.l"
-printf("cst ");
+printf("cst \n");
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
 #line 20 "lexical.l"
-printf ("aff ");
+printf ("aff\n ");
 	YY_BREAK
 case 4:
 YY_RULE_SETUP

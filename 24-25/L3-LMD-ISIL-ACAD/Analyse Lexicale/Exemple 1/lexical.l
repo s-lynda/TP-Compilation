@@ -15,9 +15,9 @@ Comment2 "/*"([^*]|\*+[^*/])*\*+"/"
 Comment3 "//"[^\n]*
 /* -- Partie : Règles de traduction -- */
 %%
-{IDF} printf ("IDF ");
-{cst} printf("cst ");
-"="   printf ("aff ");
+{IDF} printf ("IDF \n");
+{cst} printf("cst \n");
+"="   printf ("aff\n ");
 ";" printf("pvg \n");
 \\ printf("\n antislach reconnu\n");
 \\\\ printf("\n double antislach reconnu\n");

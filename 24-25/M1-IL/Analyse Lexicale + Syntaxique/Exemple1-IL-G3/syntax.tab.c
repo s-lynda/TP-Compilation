@@ -71,7 +71,7 @@
 #line 1 "syntax.y"
 
 
-int nb_ligne=1;
+extern int nb_ligne;
 int yyerror(char *s);
 
 
@@ -1571,8 +1571,7 @@ yyreturn:
 main(){
     yyparse();
 }
-// yywrap(){}
-
+yywrap(){} 
 int yyerror(char *s){
     printf("Erreur Syntaxique a la ligne %d\n",nb_ligne);
     return 0;

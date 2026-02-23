@@ -1,0 +1,5 @@
+x=x+y;
+print("resultat",res)
+do{
+//unste
+}while(x=1);
