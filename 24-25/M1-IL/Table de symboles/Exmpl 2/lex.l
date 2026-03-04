@@ -2,8 +2,8 @@
 #include "syn.tab.h"
 #include "TS_fct.h"
 extern YYSTYPE yylval;
-extern int nb_ligne;
-extern int col;
+ int nb_ligne=1;
+ int col=1;
 %}
 /* --- Partie des expressions régulières --- */
 lettre [a-zA-Z]

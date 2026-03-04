@@ -1,7 +1,7 @@
 Declaration:
 {
     int x,y,z;
-    flot a;
+    float a;
 }
 Code: 
 {

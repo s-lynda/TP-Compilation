@@ -20,7 +20,7 @@ alors {printf("Mot-cle : %s\n", yytext);}
 [(){}=;\[\]<>] {printf("Symbole: %s\n", yytext);}
 [ \t]+ 
 \n {nb_ligne++;}
-. {printf("Erreur lexicale sur l'entite %s à la ligne %d\n", yytext, nb_ligne);}
+. {printf("Erreur lexicale sur l'entite %s a la ligne %d\n", yytext, nb_ligne);}
 %%
 int main()
 {

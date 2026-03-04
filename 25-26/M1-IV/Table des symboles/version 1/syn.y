@@ -54,7 +54,7 @@ EXPRESSION: idf
           | cst
 	  | idf  divis cst 
                 {
-                 if ($3==0) printf(" Erreur  semantique a ligne %d a la colonne %d: div par 0 \n", nb_ligne,Col);                                   
+                 if ($3==0) printf(" Erreur  semantique a ligne %d a la colonne %d: div par %d \n", nb_ligne,Col,$3);                                   
                  else  printf("la div de %s par %d \n ", $1,$3);         
 		 }
 		      
@@ -67,8 +67,7 @@ main ()
    yyparse(); 
    afficher();
  }
-yywrap ()
- {}
+
 int yyerror ( char*  msg )  
 {
     printf ("Erreur Syntaxique a ligne %d a colonne %d \n", nb_ligne,Col);
