@@ -1,5 +1,5 @@
 x=x+y;
 print("resultat",res)
 do{
-//unste
+//instrs
 }while(x=1);
