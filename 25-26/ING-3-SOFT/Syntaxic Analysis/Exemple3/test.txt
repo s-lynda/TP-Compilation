@@ -1,0 +1,7 @@
+main()
+{
+    int x;
+    float y=2;
+    float z;
+    int h=33;
+}
