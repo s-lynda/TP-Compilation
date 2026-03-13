@@ -1,0 +1,9 @@
+Program  L3ISILACAD
+PDec
+integer x,i,j;
+Reel  y,z,a,x;
+InBEGIN
+ i=2;
+ j=i/0;
+ h=y+1;
+InEnD

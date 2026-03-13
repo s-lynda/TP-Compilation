@@ -13,7 +13,7 @@ lettre [a-zA-Z]
 chiffre [0-9]
 IDF {lettre}({lettre}|{chiffre})*
 cst {chiffre}+
-/* Partie des règles de production */
+/* Partie des règles de traduction */
 %%
 {IDF} {col+=yyleng; printf("%s reconnu\n",yytext);return idf;}
 {cst} {col+=yyleng;printf("%s reconnu\n",yytext);return cst;}
