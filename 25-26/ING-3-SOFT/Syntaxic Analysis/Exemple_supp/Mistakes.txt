@@ -1,0 +1,12 @@
+When we write : 
+
+Do {printf("KW %s ", yytext);return do;}
+While {printf("KW %s ", yytext);return while;}
+If {printf("KW %s ", yytext);return if;}
+
+since do, while, if are kw in c langague, it will raise the folowwing error: 
+
+lex.l: In function `yylex':
+lex.l:15: error: syntax error before "do"
+lex.l:16: error: syntax error before "while"
+lex.l:17: error: syntax error before "if"

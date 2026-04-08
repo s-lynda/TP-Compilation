@@ -1,0 +1,17 @@
+
+DEC: 
+Integer x,y,a;
+
+INSTR:
+
+Do{
+    x=x+1;
+    y=h-x;
+}While(x>23);
+
+If(y==1){
+    y = a*3;
+}endIF;
+
+ENDP.
+

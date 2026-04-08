@@ -1,0 +1,622 @@
+Grammar
+
+    0 $accept: PROGRAM $end
+
+    1 OP: '+'
+    2   | '-'
+    3   | '*'
+
+    4 INSTRUCTION: inst ';' INSTRUCTION
+    5            | /* empty */
+
+    6 inst: inst_aff
+    7     | inst_cond
+    8     | inst_do
+
+    9 inst_aff: idf '=' expr
+
+   10 expr: term OP expr
+   11     | term
+
+   12 term: idf
+   13     | nbr
+
+   14 inst_cond: mc_if '(' cond ')' '{' INSTRUCTION '}' endIf
+
+   15 cond: idf '>' idf
+   16     | idf '=' '=' idf
+   17     | idf '>' nbr
+   18     | idf '=' '=' nbr
+
+   19 inst_do: mc_do '{' INSTRUCTION '}' mc_while '(' cond ')'
+
+   20 PROGRAM: mc_dec ':' DECLARATION instr ':' INSTRUCTION endp '.'
+
+   21 DECLARATION: DEC DECLARATION
+   22            | /* empty */
+
+   23 DEC: Type liste_idf ';'
+
+   24 Type: integer
+
+   25 liste_idf: idf ',' liste_idf
+   26          | idf
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+'(' (40) 14 19
+')' (41) 14 19
+'*' (42) 3
+'+' (43) 1
+',' (44) 25
+'-' (45) 2
+'.' (46) 20
+':' (58) 20
+';' (59) 4 23
+'=' (61) 9 16 18
+'>' (62) 15 17
+'{' (123) 14 19
+'}' (125) 14 19
+error (256)
+mc_dec (258) 20
+integer (259) 24
+mc_do (260) 19
+mc_while (261) 19
+mc_if (262) 14
+endp (263) 20
+idf (264) 9 12 15 16 17 18 25 26
+nbr (265) 13 17 18
+endIf (266) 14
+instr (267) 20
+
+
+Nonterminals, with rules where they appear
+
+$accept (26)
+    on left: 0
+OP (27)
+    on left: 1 2 3, on right: 10
+INSTRUCTION (28)
+    on left: 4 5, on right: 4 14 19 20
+inst (29)
+    on left: 6 7 8, on right: 4
+inst_aff (30)
+    on left: 9, on right: 6
+expr (31)
+    on left: 10 11, on right: 9 10
+term (32)
+    on left: 12 13, on right: 10 11
+inst_cond (33)
+    on left: 14, on right: 7
+cond (34)
+    on left: 15 16 17 18, on right: 14 19
+inst_do (35)
+    on left: 19, on right: 8
+PROGRAM (36)
+    on left: 20, on right: 0
+DECLARATION (37)
+    on left: 21 22, on right: 20 21
+DEC (38)
+    on left: 23, on right: 21
+Type (39)
+    on left: 24, on right: 23
+liste_idf (40)
+    on left: 25 26, on right: 23 25
+
+
+state 0
+
+    0 $accept: . PROGRAM $end
+
+    mc_dec  shift, and go to state 1
+
+    PROGRAM  go to state 2
+
+
+state 1
+
+   20 PROGRAM: mc_dec . ':' DECLARATION instr ':' INSTRUCTION endp '.'
+
+    ':'  shift, and go to state 3
+
+
+state 2
+
+    0 $accept: PROGRAM . $end
+
+    $end  shift, and go to state 4
+
+
+state 3
+
+   20 PROGRAM: mc_dec ':' . DECLARATION instr ':' INSTRUCTION endp '.'
+
+    integer  shift, and go to state 5
+
+    $default  reduce using rule 22 (DECLARATION)
+
+    DECLARATION  go to state 6
+    DEC          go to state 7
+    Type         go to state 8
+
+
+state 4
+
+    0 $accept: PROGRAM $end .
+
+    $default  accept
+
+
+state 5
+
+   24 Type: integer .
+
+    $default  reduce using rule 24 (Type)
+
+
+state 6
+
+   20 PROGRAM: mc_dec ':' DECLARATION . instr ':' INSTRUCTION endp '.'
+
+    instr  shift, and go to state 9
+
+
+state 7
+
+   21 DECLARATION: DEC . DECLARATION
+
+    integer  shift, and go to state 5
+
+    $default  reduce using rule 22 (DECLARATION)
+
+    DECLARATION  go to state 10
+    DEC          go to state 7
+    Type         go to state 8
+
+
+state 8
+
+   23 DEC: Type . liste_idf ';'
+
+    idf  shift, and go to state 11
+
+    liste_idf  go to state 12
+
+
+state 9
+
+   20 PROGRAM: mc_dec ':' DECLARATION instr . ':' INSTRUCTION endp '.'
+
+    ':'  shift, and go to state 13
+
+
+state 10
+
+   21 DECLARATION: DEC DECLARATION .
+
+    $default  reduce using rule 21 (DECLARATION)
+
+
+state 11
+
+   25 liste_idf: idf . ',' liste_idf
+   26          | idf .
+
+    ','  shift, and go to state 14
+
+    $default  reduce using rule 26 (liste_idf)
+
+
+state 12
+
+   23 DEC: Type liste_idf . ';'
+
+    ';'  shift, and go to state 15
+
+
+state 13
+
+   20 PROGRAM: mc_dec ':' DECLARATION instr ':' . INSTRUCTION endp '.'
+
+    mc_do  shift, and go to state 16
+    mc_if  shift, and go to state 17
+    idf    shift, and go to state 18
+
+    $default  reduce using rule 5 (INSTRUCTION)
+
+    INSTRUCTION  go to state 19
+    inst         go to state 20
+    inst_aff     go to state 21
+    inst_cond    go to state 22
+    inst_do      go to state 23
+
+
+state 14
+
+   25 liste_idf: idf ',' . liste_idf
+
+    idf  shift, and go to state 11
+
+    liste_idf  go to state 24
+
+
+state 15
+
+   23 DEC: Type liste_idf ';' .
+
+    $default  reduce using rule 23 (DEC)
+
+
+state 16
+
+   19 inst_do: mc_do . '{' INSTRUCTION '}' mc_while '(' cond ')'
+
+    '{'  shift, and go to state 25
+
+
+state 17
+
+   14 inst_cond: mc_if . '(' cond ')' '{' INSTRUCTION '}' endIf
+
+    '('  shift, and go to state 26
+
+
+state 18
+
+    9 inst_aff: idf . '=' expr
+
+    '='  shift, and go to state 27
+
+
+state 19
+
+   20 PROGRAM: mc_dec ':' DECLARATION instr ':' INSTRUCTION . endp '.'
+
+    endp  shift, and go to state 28
+
+
+state 20
+
+    4 INSTRUCTION: inst . ';' INSTRUCTION
+
+    ';'  shift, and go to state 29
+
+
+state 21
+
+    6 inst: inst_aff .
+
+    $default  reduce using rule 6 (inst)
+
+
+state 22
+
+    7 inst: inst_cond .
+
+    $default  reduce using rule 7 (inst)
+
+
+state 23
+
+    8 inst: inst_do .
+
+    $default  reduce using rule 8 (inst)
+
+
+state 24
+
+   25 liste_idf: idf ',' liste_idf .
+
+    $default  reduce using rule 25 (liste_idf)
+
+
+state 25
+
+   19 inst_do: mc_do '{' . INSTRUCTION '}' mc_while '(' cond ')'
+
+    mc_do  shift, and go to state 16
+    mc_if  shift, and go to state 17
+    idf    shift, and go to state 18
+
+    $default  reduce using rule 5 (INSTRUCTION)
+
+    INSTRUCTION  go to state 30
+    inst         go to state 20
+    inst_aff     go to state 21
+    inst_cond    go to state 22
+    inst_do      go to state 23
+
+
+state 26
+
+   14 inst_cond: mc_if '(' . cond ')' '{' INSTRUCTION '}' endIf
+
+    idf  shift, and go to state 31
+
+    cond  go to state 32
+
+
+state 27
+
+    9 inst_aff: idf '=' . expr
+
+    idf  shift, and go to state 33
+    nbr  shift, and go to state 34
+
+    expr  go to state 35
+    term  go to state 36
+
+
+state 28
+
+   20 PROGRAM: mc_dec ':' DECLARATION instr ':' INSTRUCTION endp . '.'
+
+    '.'  shift, and go to state 37
+
+
+state 29
+
+    4 INSTRUCTION: inst ';' . INSTRUCTION
+
+    mc_do  shift, and go to state 16
+    mc_if  shift, and go to state 17
+    idf    shift, and go to state 18
+
+    $default  reduce using rule 5 (INSTRUCTION)
+
+    INSTRUCTION  go to state 38
+    inst         go to state 20
+    inst_aff     go to state 21
+    inst_cond    go to state 22
+    inst_do      go to state 23
+
+
+state 30
+
+   19 inst_do: mc_do '{' INSTRUCTION . '}' mc_while '(' cond ')'
+
+    '}'  shift, and go to state 39
+
+
+state 31
+
+   15 cond: idf . '>' idf
+   16     | idf . '=' '=' idf
+   17     | idf . '>' nbr
+   18     | idf . '=' '=' nbr
+
+    '='  shift, and go to state 40
+    '>'  shift, and go to state 41
+
+
+state 32
+
+   14 inst_cond: mc_if '(' cond . ')' '{' INSTRUCTION '}' endIf
+
+    ')'  shift, and go to state 42
+
+
+state 33
+
+   12 term: idf .
+
+    $default  reduce using rule 12 (term)
+
+
+state 34
+
+   13 term: nbr .
+
+    $default  reduce using rule 13 (term)
+
+
+state 35
+
+    9 inst_aff: idf '=' expr .
+
+    $default  reduce using rule 9 (inst_aff)
+
+
+state 36
+
+   10 expr: term . OP expr
+   11     | term .
+
+    '+'  shift, and go to state 43
+    '-'  shift, and go to state 44
+    '*'  shift, and go to state 45
+
+    $default  reduce using rule 11 (expr)
+
+    OP  go to state 46
+
+
+state 37
+
+   20 PROGRAM: mc_dec ':' DECLARATION instr ':' INSTRUCTION endp '.' .
+
+    $default  reduce using rule 20 (PROGRAM)
+
+
+state 38
+
+    4 INSTRUCTION: inst ';' INSTRUCTION .
+
+    $default  reduce using rule 4 (INSTRUCTION)
+
+
+state 39
+
+   19 inst_do: mc_do '{' INSTRUCTION '}' . mc_while '(' cond ')'
+
+    mc_while  shift, and go to state 47
+
+
+state 40
+
+   16 cond: idf '=' . '=' idf
+   18     | idf '=' . '=' nbr
+
+    '='  shift, and go to state 48
+
+
+state 41
+
+   15 cond: idf '>' . idf
+   17     | idf '>' . nbr
+
+    idf  shift, and go to state 49
+    nbr  shift, and go to state 50
+
+
+state 42
+
+   14 inst_cond: mc_if '(' cond ')' . '{' INSTRUCTION '}' endIf
+
+    '{'  shift, and go to state 51
+
+
+state 43
+
+    1 OP: '+' .
+
+    $default  reduce using rule 1 (OP)
+
+
+state 44
+
+    2 OP: '-' .
+
+    $default  reduce using rule 2 (OP)
+
+
+state 45
+
+    3 OP: '*' .
+
+    $default  reduce using rule 3 (OP)
+
+
+state 46
+
+   10 expr: term OP . expr
+
+    idf  shift, and go to state 33
+    nbr  shift, and go to state 34
+
+    expr  go to state 52
+    term  go to state 36
+
+
+state 47
+
+   19 inst_do: mc_do '{' INSTRUCTION '}' mc_while . '(' cond ')'
+
+    '('  shift, and go to state 53
+
+
+state 48
+
+   16 cond: idf '=' '=' . idf
+   18     | idf '=' '=' . nbr
+
+    idf  shift, and go to state 54
+    nbr  shift, and go to state 55
+
+
+state 49
+
+   15 cond: idf '>' idf .
+
+    $default  reduce using rule 15 (cond)
+
+
+state 50
+
+   17 cond: idf '>' nbr .
+
+    $default  reduce using rule 17 (cond)
+
+
+state 51
+
+   14 inst_cond: mc_if '(' cond ')' '{' . INSTRUCTION '}' endIf
+
+    mc_do  shift, and go to state 16
+    mc_if  shift, and go to state 17
+    idf    shift, and go to state 18
+
+    $default  reduce using rule 5 (INSTRUCTION)
+
+    INSTRUCTION  go to state 56
+    inst         go to state 20
+    inst_aff     go to state 21
+    inst_cond    go to state 22
+    inst_do      go to state 23
+
+
+state 52
+
+   10 expr: term OP expr .
+
+    $default  reduce using rule 10 (expr)
+
+
+state 53
+
+   19 inst_do: mc_do '{' INSTRUCTION '}' mc_while '(' . cond ')'
+
+    idf  shift, and go to state 31
+
+    cond  go to state 57
+
+
+state 54
+
+   16 cond: idf '=' '=' idf .
+
+    $default  reduce using rule 16 (cond)
+
+
+state 55
+
+   18 cond: idf '=' '=' nbr .
+
+    $default  reduce using rule 18 (cond)
+
+
+state 56
+
+   14 inst_cond: mc_if '(' cond ')' '{' INSTRUCTION . '}' endIf
+
+    '}'  shift, and go to state 58
+
+
+state 57
+
+   19 inst_do: mc_do '{' INSTRUCTION '}' mc_while '(' cond . ')'
+
+    ')'  shift, and go to state 59
+
+
+state 58
+
+   14 inst_cond: mc_if '(' cond ')' '{' INSTRUCTION '}' . endIf
+
+    endIf  shift, and go to state 60
+
+
+state 59
+
+   19 inst_do: mc_do '{' INSTRUCTION '}' mc_while '(' cond ')' .
+
+    $default  reduce using rule 19 (inst_do)
+
+
+state 60
+
+   14 inst_cond: mc_if '(' cond ')' '{' INSTRUCTION '}' endIf .
+
+    $default  reduce using rule 14 (inst_cond)
