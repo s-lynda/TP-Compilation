@@ -1,5 +1,5 @@
 %{
-  int nb_ligne=1;
+  extern int nb_ligne;
 %}
 %start INSTR_LIST
 %union{

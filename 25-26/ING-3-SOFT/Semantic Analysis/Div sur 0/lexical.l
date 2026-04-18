@@ -1,6 +1,6 @@
 %{
     #include "syn.tab.h"
-    extern int nb_ligne; 
+     int nb_ligne=1; 
     extern YYSTYPE yylval;
 %}
 lettre [a-zA-Z]
