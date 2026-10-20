@@ -1,9 +1,12 @@
-/* ------ Analyseur lexicale pour : int x=3;  -------------*/
+/* ------ Analyseur lexicale pour : int x=3; 
+
+-------------*/
 %{
     #include<stdio.h>
     // Partie : Déclarations en C
-        int nb_ligne=1;
+    int nb_ligne=1;
 %}
+
 /* -- Partie : Expressions régulières -- */
 lettre [a-zA-Z]
 chiffre [0-9]
