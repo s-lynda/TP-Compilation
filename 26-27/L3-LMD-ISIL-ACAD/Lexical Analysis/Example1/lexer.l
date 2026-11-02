@@ -16,13 +16,13 @@ cst {chiffre}+
 /* -- Partie : Règles de traduction -- */
 %%
 "int" printf("KEYWORD\n");
-{IDF} printf ("IDENTIFIER\n");
+{IDF} printf ("IDENTIFIER: %s\n",yytext);
 {cst} printf("NUMBER\n");
 "="   printf ("ASSIGN_OP\n");
 ";" printf("SEMI_COLON\n");
 [ \t] 
 \n {nb_ligne++;}
-. {printf("Erreur lexicale a la ligne %d \n",nb_ligne) ;}
+. {printf("Erreur lexicale a la ligne %d sur l entite %s \n",nb_ligne,yytext) ;}
 %%
 int main () 
 {

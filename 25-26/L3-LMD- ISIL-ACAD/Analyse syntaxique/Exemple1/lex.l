@@ -21,4 +21,3 @@ cst {chiffre}+
 \n {nb_ligne++;col=1;}
 . {printf("erreur lexicale sur l\'entite %s à la ligne %d , a la colonne %d\n",yytext,nb_ligne,col); col+=yyleng; return err;}
 %%
-

@@ -77,39 +77,71 @@ void inserer (char entite[], char code[],char type[],char val[],int i, int y)
 }
 
 /* Fonction Rechercher permet de verifier  si l'entité existe dèja dans la table des symboles */
-void rechercher (char entite[], char code[],char type[],char val[],int y)	
-{
+void rechercher(char entite[], char code[], char type[], char val[], int y)
+{   int i;
+    switch (y)
+    {
+        /* Table des identificateurs et des constantes */
+        case 1:
+            for (i = 0; (i < 200) && (TS[i].state == 1) && (strcmp(entite, TS[i].name) != 0); i++);
+            if (i == 200)
+            {
+                printf(">>>> La table des IDF et des constantes est pleine\n");
+            }
+            else if (TS[i].state == 1)
+            {
+                printf(">>>> L'entite %s existe deja\n", entite);
+            }
+            else
+            {    inserer(entite, code, type, val, i, 1); // i -> position d’insertion 
+                                                        // 1 -> Recherche dans TS des idfs & consts 
+                                                        // 2-> Recherche dans la TS des mots clés 
+                                                        // 3 -> Recherche dans la TS des séparateurs
+            }
+            break;
 
-int j,i;
 
-switch(y) 
-  {
-   case 1: 
-        for (i=0;((i<200)&&(TS[i].state==1))&&(strcmp(entite,TS[i].name)!=0);i++); 
-        if(i<200 && strcmp(entite,TS[i].name)!=0)
-        { inserer(entite,code,type,val,i,1); 
-        }else printf(">>>> L'entite %s existe deja \n",entite);
-        break;
+        /* Table des mots cles */
+        case 2:
+            for (i = 0; (i < 50) && (tabM[i].state == 1) && (strcmp(entite, tabM[i].name) != 0);i++);
 
-   case 2: //table des mots clés
-       
-       for (i=0;((i<50)&&(tabM[i].state==1))&&(strcmp(entite,tabM[i].name)!=0);i++); 
-       if(i<50 && strcmp(entite,TS[i].name)!=0)
-          inserer(entite,code,type,val,i,2);
-        else
-          printf(">>>> L'entite %s existe deja \n",entite);
-        break; 
-    
-   case 3: //Table des séparateurs
-        for (i=0;((i<50)&&(tabS[i].state==1))&&(strcmp(entite,tabS[i].name)!=0);i++); 
-        if(i<50 && strcmp(entite,TS[i].name)!=0)
-         inserer(entite,code,type,val,i,3);
-        else
-   	       printf(">>>> L'entite %s existe deja \n",entite);
-        break;
-  }
+            if (i == 50)
+            {  printf(">>>> La table des mots cles est pleine\n");
+            }
+            else if (tabM[i].state == 1)
+            {
+                printf(">>>> L'entite %s existe deja\n", entite);
+            }
+            else
+            {
+                inserer(entite, code, type, val, i, 2);
+            }
+            break;
+
+
+        /* Table des separateurs */
+        case 3:
+
+            for (i = 0;(i < 50) && (tabS[i].state == 1) && (strcmp(entite, tabS[i].name) != 0);i++);
+
+            if (i == 50)
+            {
+                printf(">>>> La table des separateurs est pleine\n");
+            }
+            else if (tabS[i].state == 1)
+            {
+                printf(">>>> L'entite %s existe deja\n", entite);
+            }
+            else
+            {
+                inserer(entite, code, type, val, i, 3);
+            }
+            break;
+        default:
+            printf(">>>> Type de table invalide\n");
+            break;
+    }
 }
-
 
 /*Fonction d'affichage de la TS */
 
