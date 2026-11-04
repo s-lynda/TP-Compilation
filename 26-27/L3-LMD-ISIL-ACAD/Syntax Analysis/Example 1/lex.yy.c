@@ -371,7 +371,7 @@ x=x+1;
 *****/
 #line 5 "lexer.l"
 #include "parser.tab.h"
-extern int nb_ligne;
+int nb_ligne=1;
 #line 376 "lex.yy.c"
 
 /* Macros after this point can all be overridden by user definitions in

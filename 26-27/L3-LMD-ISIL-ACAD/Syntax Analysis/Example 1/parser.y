@@ -1,5 +1,6 @@
 %{
-int nb_ligne=1;
+
+extern int nb_ligne;
 %}
 %token idf cst plus egal pvg
 %start PR

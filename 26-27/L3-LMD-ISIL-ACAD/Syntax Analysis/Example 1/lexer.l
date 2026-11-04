@@ -3,7 +3,7 @@ x=x+1;
 *****/
 %{
 #include "parser.tab.h"
-extern int nb_ligne;
+int nb_ligne=1;
 %}
 IDF [a-zA-Z][a-zA-Z0-9]*
 CST [0-9]+

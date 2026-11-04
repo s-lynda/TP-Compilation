@@ -70,11 +70,12 @@
 /* Line 189 of yacc.c  */
 #line 1 "parser.y"
 
-int nb_ligne=1;
+
+extern int nb_ligne;
 
 
 /* Line 189 of yacc.c  */
-#line 78 "parser.tab.c"
+#line 79 "parser.tab.c"
 
 /* Enabling traces.  */
 #ifndef YYDEBUG
@@ -123,7 +124,7 @@ typedef int YYSTYPE;
 
 
 /* Line 264 of yacc.c  */
-#line 127 "parser.tab.c"
+#line 128 "parser.tab.c"
 
 #ifdef short
 # undef short
@@ -406,7 +407,7 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,     7,     7,     8
+       0,     8,     8,     9
 };
 #endif
 
@@ -1304,14 +1305,14 @@ yyreduce:
         case 2:
 
 /* Line 1455 of yacc.c  */
-#line 7 "parser.y"
-    {printf("syntaxe correcte\n"); YYACCEPT;;}
+#line 8 "parser.y"
+    {printf("Syntaxe correcte\n"); YYACCEPT;;}
     break;
 
 
 
 /* Line 1455 of yacc.c  */
-#line 1315 "parser.tab.c"
+#line 1316 "parser.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
