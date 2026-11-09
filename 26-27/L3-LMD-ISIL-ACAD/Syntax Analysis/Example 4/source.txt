@@ -1,0 +1,11 @@
+main()
+{
+    %% Declaration part
+    float x,y,z;
+    integer o;
+
+    %% Instruction part 
+    y=y+1;
+    z=z* 335;
+    y =z /2;
+};
