@@ -23,5 +23,5 @@ InEnD   {col+=yyleng;return mc_inend;}
 {idf}  {yylval.str=strdup(yytext);col+=yyleng; inserer(yytext,"idf"); return idf;}
 [ \t] {col+=yyleng;}
 \n {nb_ligne++;col=1;}
-. {printf ("erreur lexical sur l'entite %s a la ligne %d a la colonne %d",yytext,nb_ligne,col); col+=yyleng;return err;}
+. {printf ("erreur lexical sur l'entite %s a la ligne %d a la colonne %d",yytext,nb_ligne,col); col+=yyleng;}
 %%

@@ -62,5 +62,3 @@ main ()
 yyparse();
 afficher();
 }
-yywrap(){
-}

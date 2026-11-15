@@ -14,7 +14,7 @@ comment "%%"[^\n]*
 {Cst} {col+=yyleng; return cst;}
 {comment} 
 [(){},;*+=/] {col+=yyleng; return yytext[0];}
-[ \t] {col+=yyleng;}
+[ \t]+ {col+=yyleng;}
 \n {nb_ligne++; col=1;}
 . {printf("Erreur lexicale sur l'entite %s, a la ligne %d, a la colonne %d",yytext,nb_ligne,col);}
 %%
